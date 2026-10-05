@@ -1,0 +1,307 @@
+{
+"h1":"Bibliothèque",
+"intro":"Des ouvrages de référence sur la cuisine française, résumés et mis en forme : traditions, recettes, gestes et astuces. Chaque page s'appuie sur un livre cité en fin de page.",
+"meta":["Bibliothèque : ouvrages de référence | La Cuisine Française","Résumés d'ouvrages de référence sur la cuisine française : gastronomie savoyarde, cuisine lyonnaise, trucs et astuces de cuisine."],
+"nav":"Bibliothèque",
+"items":[
+{"id":"savoie","doc":"La cuisine savoyarde","slug":"cuisine-savoyarde","title":"La cuisine savoyarde","sub":"Trois traditions, de la soupe paysanne aux gibiers de montagne, et plus de cent préparations classées par famille.",
+"meta":["Cuisine savoyarde : traditions, recettes et fromages","Tradition paysanne, bourgeoise et hôtelière : le répertoire de la cuisine savoyarde, des fondues aux farçons, du gâteau de Savoie aux liqueurs."],
+"source":"Monique Lansard, Recueil de la gastronomie savoyarde.",
+"blocks":[
+{"t":"p","x":"La cuisine savoyarde tire sa singularité de sa situation géographique : une zone de passage, qui relie différentes civilisations. Elle s'articule autour de trois grandes traditions."},
+{"t":"h2","x":"Contexte historique et traditions culinaires"},
+{"t":"list","items":[
+"<strong>La tradition paysanne des hautes vallées.</strong> Marquée par la rusticité et une pauvreté historique : au XVIIe siècle, on estime la consommation de pain entre 1,2 kg et 2 kg par personne et par jour. Elle se compose de soupes, de plats de pommes de terre (farçon, farcement, rambollets), de polenta (implantée au XVIIIe siècle), de viandes salées (principalement de la chèvre) et de douceurs de fête (riz au lait, beignets, rissoles).",
+"<strong>La tradition bourgeoise et aristocratique.</strong> Née au XVIIIe siècle et épanouie au XIXe dans les maisons de notables, elle comprend des préparations au fromage raffinées (gnocchis ou niokis, soufflés, ramequins), des viandes fraîches et des gibiers (fricandeau, civets, salmis) et des entremets travaillés (sambayon, flans, gâteaux secs).",
+"<strong>La tradition hôtelière et touristique.</strong> Née de l'accueil des voyageurs sur les grandes voies d'accès, comme la voie romaine du Petit Saint-Bernard, elle a apporté les épices, les accords sucrés-salés, les pains au safran et les charcuteries aromatisées (fenouil, anis). Elle a aussi mis en valeur les produits d'exception : poissons de lac (féras, truites, ombles chevaliers), gibiers de montagne et champignons."
+]},
+{"t":"h2","x":"Soupes, entrées chaudes, pâtés et terrines"},
+{"t":"h3","x":"Les soupes"},
+{"t":"dishes","items":[
+["Soupe aux fèves","Lardons rissolés, poireaux, fèves (fraîches ou sèches), pommes de terre, sarriette et crème."],
+["Soupe au caillou","Poireaux, navets, oignons et pommes de terre, avec une grosse pierre jetée dans la marmite pour écraser les légumes sous l'effet de l'ébullition."],
+["Soupe à l'oseille","Oseille fondue au beurre, pain rassis en cubes, mouillés à l'eau puis liés à la crème."],
+["Soupe de gruaux d'orge ou de blé","Gruaux cuits longuement avec pommes de terre écrasées, farine de maïs et lait frais."],
+["Soupe aux herbes","Un mélange vert (poireau, oseille, épinard, pissenlit, blettes) revenu au beurre puis cuit avec des pommes de terre."],
+["Soupe grasse","Bouillon de pot-au-feu versé sur des couches alternées de pain grillé, d'oignons rissolés et de beaufort, mijoté très longuement."]
+]},
+{"t":"h3","x":"Les pâtés et terrines"},
+{"t":"dishes","items":[
+["Terrine de foie de chamois aux noisettes","Foie de chamois mariné au marc de Savoie et à la baie de genièvre, haché avec de la gorge de porc, de la mie de pain et des noisettes, cuit au bain-marie."],
+["Pâté en croûte","Veau mariné au vinaigre, farce de porc et petit salé dans une pâte maison, cuit au four."],
+["Pâté chaud familial","Carrés de veau marinés au vinaigre et hachis de lard, d'oignons, de persil et de cédrat, servis avec une sauce rousse au vinaigre et au madère."],
+["Pâté de Pâques","Cabri étuvé au vin blanc avec des herbes et des raisins de Corinthe, refroidi dans son jus en gelée."]
+]},
+{"t":"h2","x":"Spécialités au fromage et fondues"},
+{"t":"p","x":"On distingue en Savoie la <em>tome</em>, production domestique quotidienne, souvent maigre (tome des Bauges, du Mont-Cenis, de Tarentaise, d'Abondance), des fromages à pâte cuite (beaufort, emmental) ou à pâte pressée non cuite (reblochon, tamié, vacherin des Bauges)."},
+{"t":"h3","x":"Les fondues"},
+{"t":"dishes","items":[
+["Fondue des Bauges","Vacherin des Bauges fondu à feu doux dans le caquelon frotté à l'ail avec un peu d'eau, versé sur du pain de campagne grillé, sans jamais bouillir."],
+["Fondue du siècle dernier","Comté trempé à l'eau, fondu avec du beurre, de la farine, des œufs entiers et de la crème, servie en ramequins."],
+["Fondue des sports d'hiver","Originaire de Suisse, introduite vers 1920 : un mélange à parts égales de beaufort, de comté et d'emmental, fondu au vin blanc avec une gousse d'ail et du kirsch."]
+]},
+{"t":"h3","x":"Entremets et gratins au fromage"},
+{"t":"dishes","items":[
+["Niokis","Pâte à choux salée enrichie de parmesan, pochée dans le lait bouillant puis gratinée au four avec de la béchamel et du parmesan."],
+["Pâté de fromages de chèvre","Béchamel au parmesan, jambon en dés et chèvres frais, cuite sur pâte brisée et saupoudrée de sucre."],
+["Gratin de fondue","Pâte à soufflé au fromage râpé, beurre, farine, lait et œufs en neige."],
+["Talmouses au beaufort","Carrés de pâte feuilletée garnis d'un appareil au lait, au beurre, aux œufs et aux lamelles de beaufort."],
+["Ramequin","Soufflé léger à base de beurre, de farine, de parmesan, d'eau et de jaunes d'œufs, auquel on incorpore les blancs en neige."],
+["Friands","Béchamel garnie de bolets secs réhydratés, de dés de jambon, de gruyère et d'œufs, découpée en carrés, panée et frite."]
+]},
+{"t":"h2","x":"Œufs et omelettes"},
+{"t":"dishes","items":[
+["Omelette aux croûtons et au lard","Lardons blanchis puis dorés, croûtons de pain et œufs battus."],
+["Omelette aux champignons des bois","Champignons sautés à vif sans eau, dorés au beurre avant d'ajouter les œufs."],
+["Omelette à l'oseille","Oseille fondue au beurre, ajoutée aux œufs battus."],
+["Omelette savoyarde","Poireaux fondus, dés de pommes de terre sautés, lardons et lamelles de gruyère."],
+["Œufs brouillés aux morilles","Œufs cuits au bain-marie avec des morilles fraîches hachées, liés à la crème fraîche."],
+["Œufs au plat savoyards","Pommes de terre sautées au beurre, recouvertes de beaufort râpé, œufs cassés dessus et arrosés de crème."]
+]},
+{"t":"h2","x":"Poissons des lacs et des rivières"},
+{"t":"dishes","items":[
+["Féra froide du Léman","Féra dorée au beurre avec oignons et échalotes, puis cuite au bouillon ; le jus réduit est monté en mayonnaise à la moutarde pour napper le poisson."],
+["Filets de truite à la crème","Filets pochés au vin blanc, dont le jus réduit est lié à la crème et aux œufs jusqu'à consistance de flan."],
+["Omble chevalier","Cuit au four avec des cèpes émincés, du vin blanc et de la crème fraîche."],
+["Lavarets à l'oseille","Poissons farcis d'oseille blanchie, de mie de pain et d'œuf, nappés d'une sauce au vin blanc, à la crème, à la farine et à la moutarde."],
+["Grenouilles à la savoyarde","Cuisses sautées au beurre avec ail et oignons, liées aux œufs comme une omelette et déglacées au vinaigre poivré."],
+["Écrevisses","Écrevisses sautées au beurre, flambées au marc, servies dans une sauce au vin blanc réduit aux échalotes et à la crème."]
+]},
+{"t":"h2","x":"Charcuteries et viandes"},
+{"t":"h3","x":"Les charcuteries locales"},
+{"t":"dishes","items":[
+["Diots au vin blanc","Saucisses cuites à la vapeur de vin blanc sur un lit de sarments de vigne, accompagnées de pommes de terre BF et d'une sauce échalote-tomate."],
+["Longeoles au fenouil","Saucisses de porc, couennes et boyaux cuits au fenouil, pochées avec des pommes de terre."],
+["Pormons (ou pormonaises)","Saucisses de porc enrichies de choux hachés (ou de raves, de poireaux, de blettes), poêlées ou pochées."],
+["Saucisses de Magland à l'huile","Poêlées avec du riz mijoté au bouillon et saupoudrées de gruyère."]
+]},
+{"t":"h3","x":"Les plats de viande traditionnels"},
+{"t":"dishes","items":[
+["Potée savoyarde","Plat de fête réunissant jambonneau, palette salée, petit salé, choux verts, carottes, navets, marrons et pommes de terre, autrefois cuite avec de la chèvre salée."],
+["Poule au riz","Plat traditionnel du soir de Noël : poule pochée au bouillon aromatique, servie avec un riz doré puis cuit au jus, et une sauce poulette (roux, crème, jaunes d'œufs)."],
+["Sauté de cabri","Morceaux dorés à la farine, cuits au vin blanc et au bouillon avec petits oignons, carottes et pommes de terre, relevés d'un filet de vinaigre."],
+["Fricassée de caïon (porc)","Échine de porc marinée au vin rouge, à l'eau-de-vie et aux aromates, mijotée puis liée au sang et à la crème."],
+["Noix de veau à l'Aixoise","Rôti braisé entouré d'une garniture de petits légumes (oignons, carottes, navets, céleri) et de marrons."]
+]},
+{"t":"h2","x":"Gibiers de montagne"},
+{"t":"dishes","items":[
+["Perdreaux aux fidès","Demi-perdreaux dorés au beurre, recouverts de lard et de gruyère, cuits sur un lit de vermicelles dorés au bouillon."],
+["Gélinotte","Lavée au lait, dorée en cocotte au vin blanc, ou servie gratinée avec une béchamel au beaufort et à la crème."],
+["Coq de bruyère aux myrtilles","Petit tétras rincé au lait, rôti en cocotte, accompagné d'une réduction de jus de cuisson au vin blanc et de myrtilles fraîches."],
+["Cuissot de chamois","Jeune (éterlou), il est rôti au four après une marinade au marc et à l'huile ; adulte, il est braisé après cinq jours de marinade au vin blanc et au vinaigre, et servi avec un roux au jus de cuisson."],
+["Rôti de bouquetin","Viande dégraissée, marinée au vin blanc, dorée dans sa propre graisse et mijotée en jus court lié à la crème et au beurre manié."]
+]},
+{"t":"h2","x":"Légumes, pommes de terre et accompagnements"},
+{"t":"dishes","items":[
+["Pela (ou pela des Aravis)","Pommes de terre et oignons rissolés à la poêle, recouverts d'un reblochon entier gratté et fondus à l'étouffée."]
+]},
+{"t":"h3","x":"Les gratins de légumes"},
+{"t":"dishes","items":[
+["Poireaux à la savoyarde","Tronçons blanchis, gratinés en couches avec de la chapelure et du gruyère."],
+["Gratin de choux","Choux blanchis et hachés, mélangés à une béchamel riche, de la crème et du gruyère."],
+["Gratin de pommes de terre","Rondelles frottées d'ail, cuites au bouillon de pot-au-feu doux puis gratinées au beurre."],
+["Cardons au gratin","Cardons cuits dans un blanc citronné, nappés d'une sauce au bouillon, avec des tranches de moelle de bœuf pochées et du gruyère."],
+["Gratin de laitues","Laitues braisées à l'étouffée, disposées avec des lardons blanchis, arrosées de leur jus réduit et gratinées."]
+]},
+{"t":"h3","x":"Farçons et farcements, les plats paysans emblématiques"},
+{"t":"dishes","items":[
+["Farcement (à la rabolire)","Pommes de terre râpées crues mélangées à des pruneaux, des raisins secs, des lardons rissolés, de la farine, un œuf et de l'eau-de-vie, moulé dans des tranches de petit salé et cuit quatre heures au bain-marie dans un moule spécial, la <em>rabolire</em>."],
+["Farcement au chou","Purée de pommes de terre, cœur de chou haché, pruneaux, raisins, lardons et oignons, cuite quatre heures au four dans une cocotte tapissée de feuilles de chou blanchies."],
+["Farçon des Bauges","Purée de pommes de terre sucrée et beurrée, liée à la crème et cuite trois heures à four doux."],
+["Farçon classique","Purée de pommes de terre enrichie d'œufs, de lait, de beurre, de cerfeuil, saupoudrée de gruyère."]
+]},
+{"t":"h3","x":"Autres préparations champêtres"},
+{"t":"dishes","items":[
+["Pommes de terre au vin blanc","Mijotées au bouillon et au vin blanc avec des dés de lard et des oignons."],
+["Châtaignes aux poires et pommes de terre","Marrons épluchés cuits au bouillon avec des dés de poires et de pommes de terre, finis à la crème fraîche."],
+["Cœurs de chardons","Jeunes capitules de chardons (les « soleils ») nettoyés, blanchis, garnis de béchamel et gratinés au fromage."],
+["Champignons","Bolets farcis au jambon cru et à la persillade ; cortinaires grillés à l'huile de noix et garnis d'un hachis d'herbes et de mie de pain ; gratin de pommes de terre aux cèpes et à la crème."]
+]},
+{"t":"h2","x":"Pâtes, céréales et pâtons traditionnels"},
+{"t":"dishes","items":[
+["Polenta","Semoule de maïs dorée au beurre, cuite au bouillon, détendue au lait ou à la crème puis gratinée au four avec du beaufort."],
+["Matafan (matefaim)","Épaisse galette rustique que les paysans mangeaient le matin pour tenir la journée ; pâte de farine, d'œufs, d'eau-de-vie et d'eau, cuite à la poêle dans l'huile d'olive."],
+["Rambollets","Boulettes de purée de pommes de terre (crues et cuites) et de farine, enserrant un fruit sec (pruneau, figue, poire), pochées puis nappées d'oignons dorés à la crème."],
+["Fricot","Pommes de terre et poires fermes sautées au beurre, saupoudrées de farine, mijotées à l'eau et liées à la crème."],
+["Beignets de pommes de terre","Pommes de terre râpées crues, mélangées à des œufs, de la farine, du lait et du cerfeuil, frites en galettes."],
+["Ravioles aux herbes","Hachis d'épinards, de blettes et de tomme fraîche lié d'œufs et de farine, façonné en tronçons, poché puis gratiné à la crème et au gruyère."],
+["Agnelots","Petits raviolis de pâte fraîche garnis d'une farce à l'oseille, aux épinards, à la viande de mouton hachée, au parmesan et à la tomme fraîche, pochés puis gratinés."],
+["Fidès","Vermicelles crus dorés au beurre avec oignons et ail, cuits à sec au bouillon et saupoudrés de fromage."],
+["Crozets","Petites pâtes carrées traditionnelles, pochées à l'eau bouillante, montées en gratin avec du beaufort, du bouillon et un beurre noisette."]
+]},
+{"t":"h2","x":"Desserts, gâteaux et douceurs"},
+{"t":"dishes","items":[
+["Gâteau de Savoie","Son origine remonte au XIVe siècle : il aurait été créé par Pierre de Yenne ou Jean de Belleville pour Amédée VIII et l'empereur Sigismond. Un biscuit d'une grande légèreté, à base de jaunes d'œufs et de sucre blanchis, de fécule, de farine, de zeste de citron et de blancs en neige très fermes, cuit lentement."],
+["Rissoles (« lé rézoulé »)","Petits chaussons feuilletés ou en pâte brisée, garnis de confiture sèche (Apremont) ou de pâte de coings (Bauges), frits ou cuits au four."],
+["Brioche de Saint-Genix (ancien « bognon »)","Brioche levée riche en beurre, pétrie avec des pralines roses écrasées et surmontée de pralines entières et de gros sucre."],
+["Rioutes","Anneaux de pâte à pain anisée façonnés en 8, pochés à l'eau bouillante puis séchés au four très doux ; on les mange trempés dans du vin rouge."],
+["Sambayon","Version savoyarde du <em>zabaione</em> piémontais : sabayon de jaunes d'œufs, de sucre, de zeste de citron, de vin blanc et de vermouth fouetté au bain-marie."],
+["Pavé au chocolat","Entremets bourgeois chambérien : biscuits à la cuillère imbibés de kirsch, recouverts d'une préparation riche de chocolat fondu, de beurre et d'œufs."],
+["Épognes","Tartes briochées ou en pâte à pain garnies de fruits frais (myrtilles, cerises) ou de crème pâtissière aux pralines (épogne aux pralines)."],
+["Tartes","Tarte aux myrtilles sur fond de pâte brisée saupoudré de semoule ; tarte aux fruits d'hiver (raisins et poires secs caramélisés) ; tarte aux pruneaux et raisins infusés au vin rouge et à l'eau-de-vie."],
+["Petites douceurs","Bugnes (losanges de pâte levée parfumée au rhum et au zeste de citron, frits), nichons de Grésy (meringues séchées au four), gâteaux au safran (sablés dorés au safran), craquelins, truffettes au chocolat."]
+]},
+{"t":"h2","x":"Liqueurs et boissons des Alpes"},
+{"t":"dishes","items":[
+["Liqueur de millepertuis","Fleurs de millepertuis macérées quinze jours au soleil dans de l'alcool à fruits, filtrées et sucrées."],
+["Liqueur de prunelle","Prunelles pilées et noyaux écrasés, macérés un mois au soleil avec du sucre et de l'alcool."],
+["Alcool de genièvre","Baies de genièvre infusées six semaines avec du marc, du sucre, de la cannelle, du citron et des clous de girofle."],
+["Thé des Alpes (vulnéraire)","Feuilles de sidéritis macérées dans du marc de Savoie sucré."]
+]}
+]},
+{"id":"lyon","doc":"La gastronomie lyonnaise","slug":"gastronomie-lyonnaise","title":"La gastronomie lyonnaise","sub":"La ville « de gueule », ses mères, ses bouchons et son mâchon, puis les recettes emblématiques de la cuisine lyonnaise.",
+"meta":["Gastronomie lyonnaise : bouchons, mères et recettes","Histoire de la gastronomie lyonnaise, du bouchon au mâchon, et les recettes phares : quenelles de brochet, gratinée, cervelle de canut, tablier de sapeur."],
+"source":"Cuisine lyonnaise, collection Petits Pratiques Hachette.",
+"blocks":[
+{"t":"h2","x":"Histoire et traditions"},
+{"t":"h3","x":"Lyon, la « ville de gueule »"},
+{"t":"p","x":"Dès l'époque gauloise et romaine avec Lugdunum, puis à la Renaissance, célébrée par Érasme et Rabelais, Lyon cultive l'art de la bonne chère. Au XVe siècle, l'instauration des quatre foires royales en fait une plaque tournante commerciale, propice aux grands rassemblements gourmands."},
+{"t":"p","x":"La tradition s'est nourrie de la culture ouvrière, notamment celle des canuts, les tisserands de soie, friands de repas copieux, ainsi que du savoir-faire des célèbres <em>mères lyonnaises</em>. Ces cuisinières d'exception ont sublimé les produits locaux par une cuisine simple, authentique et savoureuse."},
+{"t":"h3","x":"Un terroir d'exception aux portes de la ville"},
+{"t":"list","items":[
+"<strong>Poissons et volailles.</strong> Les volailles de Bresse, les brochets et les carpes des étangs de la Dombes.",
+"<strong>Vignobles.</strong> Le Beaujolais, avec ses dix crus, et les Coteaux du Lyonnais, indissociables des repas traditionnels.",
+"<strong>Fromages et charcuteries.</strong> Le saint-marcellin, le mont-d'or, et l'art de la cochonnaille : rosette, jésus, sabodet, cervelas."
+]},
+{"t":"h3","x":"Les bouchons et le mâchon"},
+{"t":"p","x":"Les <strong>bouchons</strong> trouvent leur origine à l'époque des diligences : on y « bouchonnait » les chevaux avec des bottes de paille. Le mot a fini par désigner le bistrot où l'on se restaure généreusement."},
+{"t":"p","x":"Le <strong>mâchon</strong> est ce casse-croûte roboratif que les ouvriers et les livreurs de soie prenaient vers dix heures du matin : des charcuteries variées, arrosées d'un « pot » de beaujolais de 46 cl."},
+{"t":"h2","x":"Les recettes emblématiques"},
+{"t":"p","x":"L'ouvrage regroupe de nombreuses recettes traditionnelles, classées par catégories."},
+{"t":"h3","x":"Soupes et entrées"},
+{"t":"dishes","items":[
+["Soupe lyonnaise au beaujolais","Un bouillon de légumes et de tapioca réduit au vin rouge."],
+["Soupe aux truffes","Soupe festive feuilletée au foie gras et à la truffe."],
+["Gratinée lyonnaise","La célèbre soupe à l'oignon gratinée au gruyère."],
+["Cervelle de canut","Fromage blanc battu aux fines herbes, à l'échalote, à l'ail, à l'huile et au vin blanc."],
+["Saladier lyonnais","Salade frisée garnie de pieds de mouton, de foies de volaille, de harengs et de croûtons."],
+["Saucisson de Lyon en brioche","Saucisson pistaché cuit et enveloppé dans une pâte à brioche dorée."],
+["Groin d'âne aux lardons","Salade de pissenlits, appelés <em>groin d'âne</em> à Lyon, servie avec des lardons et des œufs."]
+]},
+{"t":"h3","x":"Poissons"},
+{"t":"dishes","items":[
+["Quenelles de brochet","La grande spécialité, à base de chair de brochet de la Dombes, servie nappée d'une sauce onctueuse (bisque ou sauce suprême, par exemple)."],
+["Carpe de la Dombes","Cuite au four sur un lit de champignons, d'échalotes et de pouilly-fuissé."],
+["Matelote au beaujolais de Nini","Ragoût de poissons de rivière cuisiné au vin rouge."]
+]},
+{"t":"h3","x":"Viandes, volailles et abats"},
+{"t":"dishes","items":[
+["Tablier de sapeur","Morceau de panse de bœuf mariné au vin blanc, pané puis frit."],
+["Poularde de la mère Filloux","Poularde de Bresse pochée avec des légumes et truffée sous la peau."],
+["Poulet au vinaigre","Morceaux de poulet de Bresse revenus et mijotés dans une réduction de vinaigre de vin et de vin blanc."],
+["Gras-double à la lyonnaise","Tripes de bœuf sautées à la poêle avec des oignons caramélisés, déglacées au vinaigre et au vin blanc."],
+["Gigot à la cuillère","Gigot d'agneau mijoté à feu très doux pendant sept heures."]
+]},
+{"t":"h3","x":"Accompagnements, sauces et desserts"},
+{"t":"dishes","items":[
+["Cardons au gratin","Légume traditionnel d'origine romaine, cuit et gratiné sous une béchamel au jus de viande."],
+["Criques paillasson et crêpes Parmentier","Galettes croustillantes de pommes de terre râpées ou préparées en purée."],
+["Sauce lyonnaise","Sauce aux oignons roussis, au vin blanc et au vinaigre."],
+["Bugnes et gaufres de Gnafron","Beignets de carnaval croustillants, parfumés au citron ou au rhum, et gaufres moelleuses."],
+["Matefaim de Mireille","Épaisse galette à la poêle garnie de pommes râpées, autrefois mangée pour « mater la faim » des ouvriers."]
+]}
+]},
+{"id":"trucs","doc":"Mille et un trucs de cuisine","slug":"mille-et-un-trucs-de-cuisine","title":"Mille et un trucs de cuisine","sub":"Astuces de secours, pain rassis, restes et sauces : les tours de main d'une cuisine familiale qui ne gaspille rien.",
+"meta":["Mille et un trucs de cuisine : astuces, restes et sauces","Rattraper un plat trop salé, rajeunir du pain, accommoder les restes, réussir mayonnaise et béchamel : les astuces pratiques de Huguette Couffignal."],
+"source":"Huguette Couffignal, Mille et un trucs de cuisine (Éditions Solar, 1976 ; Éditions internationales Alain Stanké, 1980-1981).",
+"blocks":[
+{"t":"p","x":"Un recueil pratique de savoir-faire, d'astuces et de tours de main, complémentaire des recettes traditionnelles, pour faciliter la cuisine familiale au quotidien."},
+{"t":"h2","x":"Les astuces de secours"},
+{"t":"dishes","items":[
+["Plat trop salé","Plonger un morceau de sucre quelques secondes dans la préparation pour absorber le sel, ou y faire cuire quelques tranches de pomme de terre crue."],
+["Plat ou sauce brûlé(e)","Plonger le fond de la casserole dans l'eau fraîche et placer un linge humide sous le couvercle pour faire disparaître l'odeur."],
+["Café éventé","Le faire tremper quinze minutes dans de l'eau froide, puis le sécher à la poêle avec quelques pincées de sucre."],
+["Mayonnaise tournée","Ajouter une cuillerée de vinaigre bouillant à un peu de sauce dans un autre bol, puis réincorporer le reste peu à peu."],
+["Plat trop gras","Mettre des feuilles de laitue dans le pot pendant la cuisson pour absorber l'excès de graisse."],
+["Œuf manquant dans un gâteau","Battre un demi-verre de lait avec un filet de vinaigre."]
+]},
+{"t":"h2","x":"Le pain rassis et la chapelure"},
+{"t":"h3","x":"Rajeunir et conserver le pain"},
+{"t":"dishes","items":[
+["Rajeunir du pain rassis","Humecter rapidement la croûte sous le robinet (ou l'envelopper dans un linge humide), puis le passer au four chaud. La chaleur transforme l'eau en vapeur, qui réimbibe l'amidon : la mie redevient tendre et la croûte croustillante."],
+["Conserver le pain frais","Le garder dans une jarre en grès ou en terre cuite avec couvercle. Pour le pain blanc, une boîte en fer ; pour le pain noir, un torchon humide."],
+["Pain-biscuit ou biscottes maison","Couper le pain en tranches fines, l'humecter légèrement de lait sucré ou de sirop de sucre, puis le faire sécher à four doux. Il se conserve très longtemps dans une boîte en fer."]
+]},
+{"t":"h3","x":"Fabriquer et conserver la chapelure"},
+{"t":"dishes","items":[
+["Chapelure maison","Passer les morceaux de pain très secs au four, puis les écraser au rouleau ou les passer au moulin ou au hachoir mécanique à grille fine."],
+["Farine de chapelure","Passée dans un moulin à céréales fin, la chapelure donne une « farine » utilisable en pâtisserie (pâtes à gâteaux, babas, gâteau de Savoie). Les gâteaux lèvent très bien si l'on bat les blancs d'œufs en neige."],
+["Conservation","Dans un bocal de verre ou une boîte métallique fermant hermétiquement."]
+]},
+{"t":"h3","x":"Recettes salées à base de pain rassis"},
+{"t":"dishes","items":[
+["Croustades","Tailler des tranches épaisses de pain rassis, évider le centre pour former une tartelette, beurrer et faire griller ou passer au four avant de garnir (champignons, sauces, etc.)."],
+["Pain perdu au jus","Imbiber les tranches de lait tiède, les tremper dans des œufs battus avec sel, poivre et un bon jus de viande, puis les poêler."],
+["Crépiau aux pissenlits ou crêpée au fromage","Mélanger de la chapelure fine avec du lait, des œufs battus et du fromage râpé ou des pissenlits ou de la verdure hachés, fondre à la poêle pour obtenir une pâte épaisse, puis dorer des deux côtés comme une grosse crêpe."],
+["Crépiau lorrain (aux pommes de terre)","Mélanger 250 g de chapelure, 700 g de pommes de terre crues râpées, des œufs et un peu de lait, puis poêler en crêpes épaisses."],
+["Allumettes au fromage (apéritif)","Mélanger une tasse de fromage râpé, une tasse de chapelure et une tasse de beurre en copeaux avec un soupçon d'eau ; étaler au rouleau, découper en allumettes et cuire au four."],
+["Patranque d'Auvergne ou cantamerlou","Faire revenir de la chapelure humectée et essorée dans une poêle avec du beurre chaud, ajouter du cantal (ou du fromage blanc pour le cantamerlou) et remuer jusqu'à ce que le fromage fonde et file."],
+["Mique au pain (pour la soupe ou la potée)","Mélanger de la mie de pain trempée et essorée, du lard salé haché, de l'oignon poêlé, des herbes hachées, des épices et des œufs. Former une boule (« la colombe »), l'envelopper dans un linge ou des feuilles de chou blanchies et la pocher trois quarts d'heure dans le bouillon de la soupe."],
+["Chapons aillés","Croûtons de pain frottés d'ail, à ajouter dans les salades (comme la chicorée) ou à glisser dans la cavité d'une volaille avant rôtissage."],
+["Sauce à la mie de pain","Faire infuser oignon et laurier dans du lait, filtrer, puis lier avec de la chapelure blanche à feu doux jusqu'à épaississement. Ajouter une noix de beurre et de la muscade."],
+["Patafla (pain farci pique-nique)","Évider une flûte ou un pain de mie long, garnir avec un mélange de restes de viande poêlés, d'oignons, de mie humectée et d'œuf, puis laisser raffermir au frais avant de servir en tranches."]
+]},
+{"t":"h3","x":"Recettes sucrées à base de pain rassis"},
+{"t":"dishes","items":[
+["Tartelettes aux amandes","Tranches de pain (grillées ou non) tartinées d'une crème d'amandes (amandes pilées, sucre, beurre, eau de fleur d'oranger, œuf) et gratinées au four."],
+["Pain du Sérail","Faire chauffer 250 g de miel, 125 g de sucre et 125 g de beurre. Ajouter 150 g de chapelure, cuire en remuant, étaler dans un plat, laisser refroidir et découper en triangles à servir avec de la crème."],
+["Soufflé au pain","Préparer une base épaisse en faisant gonfler et cuire de la chapelure blanche dans du lait, puis ajouter les jaunes d'œufs, la garniture et les blancs en neige avant de cuire au four."]
+]},
+{"t":"h2","x":"La réutilisation des restes"},
+{"t":"h3","x":"La règle générale"},
+{"t":"p","x":"Pour réutiliser un reste dans un plat complet, il doit constituer au moins un tiers du plat final. S'il est en quantité inférieure, mieux vaut l'intégrer dans un potage ou un bouillon."},
+{"t":"h3","x":"Réchauffer sans dessécher"},
+{"t":"dishes","items":[
+["Ragoûts, purées, légumes, pâtes","Verser d'abord trois cuillerées d'eau ou de bouillon au fond de la casserole avant d'y mettre les restes, puis chauffer à feu doux."],
+["Viandes rouges ou rôti de gigot","Les réchauffer très délicatement au bain-marie, ou scellées dans une papillote d'aluminium pochée dans l'eau bouillante, ou encore entre deux assiettes posées sur une casserole d'eau bouillante. Pour le gigot : quinze minutes à four doux dans un fond d'eau aillé."],
+["Pâtes cuites d'avance","Les jeter hors du feu dans une casserole d'eau bouillante, remuer quelques minutes pour défaire les paquets, puis égoutter."],
+["Feuilletés, friands, croissants, pâtés en croûte","Envelopper dans du papier sulfurisé ou d'aluminium, passer le paquet sous l'eau froide et mettre au four chaud quinze minutes."],
+["Restes de purée","Ajouter du lait crémeux, du beurre frais et du fromage râpé avant de réchauffer, pour éliminer le goût de réchauffé."]
+]},
+{"t":"h3","x":"Transformer les restes de viande et de poisson"},
+{"t":"dishes","items":[
+["Boulettes et croquettes","Hacher la viande ou le poisson, mélanger à parts égales avec de la panade (ou de la mie de pain humectée et essorée), assaisonner généreusement (oignons, ail, herbes, épices), lier à l'œuf, façonner, paner et poêler ou frire."],
+["Rissoles","Envelopper la farce dans de petites abaisses de pâte brisée ou feuilletée et cuire au four ou à la friture."],
+["Œufs écossais","Envelopper des œufs durs d'une couche épaisse de farce (à base de reste de viande ou de chapelure assaisonnée), paner et poêler."],
+["Quenelles","Réduire le reste (viande blanche, poisson, légumes) en purée lisse. Ajouter un demi-bol de panade pour deux bols de purée, piler avec du beurre, des herbes et un trait de cognac, lier au blanc d'œuf, façonner et pocher à l'eau frémissante."],
+["Gras et couennes de jambon","La couenne parfume les soupes de légumes ; le gras haché apporte du moelleux aux farces."]
+]},
+{"t":"h3","x":"Utiliser les blancs d'œufs seuls"},
+{"t":"dishes","items":[
+["En cuisine salée","Les ajouter battus aux hachis ou aux boulettes pour leur donner de la tenue."],
+["En pâtisserie","Île flottante, œufs à la neige, dames blanches, ou gâteau d'argent (125 g de beurre, 250 g de sucre, 125 g de farine et 5 blancs d'œufs en neige, au four doux 45 minutes)."],
+["Crème « à la Vierge »","Porter sur feu doux du lait, du sucre et un ou deux blancs d'œufs battus en neige, en tournant bien."]
+]},
+{"t":"h3","x":"Autres restes courants"},
+{"t":"dishes","items":[
+["Oignons entamés","Les garder au frais dans un bocal hermétique pour éviter que l'odeur ne contamine les autres aliments."],
+["Cosses de pois ou de haricots","Les faire sécher pour colorer et aromatiser plus tard les bouillons (ou en tisane diurétique)."],
+["Citron entamé","Le poser à l'envers dans une soucoupe contenant un filet d'eau ou de vinaigre, ou en saler la tranche. Pour la moutarde, poser une rondelle de citron sur le pot entamé."],
+["Bière ou eau gazeuse entamée","Ranger la bouteille goulot en bas dans une jatte d'eau pour préserver les bulles."]
+]},
+{"t":"h2","x":"Sauces et liaisons"},
+{"t":"h3","x":"Principes généraux"},
+{"t":"dishes","items":[
+["Mélange","Utiliser un fouet plutôt qu'une cuillère en bois pour délayer et homogénéiser sans grumeaux."],
+["Liaisons aux céréales (farine, fécule)","Toujours délayer à froid avant de faire chauffer, tout en fouettant."],
+["Liaisons aux œufs","Les effectuer toujours hors du feu pour éviter la coagulation."]
+]},
+{"t":"h3","x":"Sauces émulsionnées"},
+{"t":"dishes","items":[
+["Mayonnaise","Au maximum un quart de litre d'huile par jaune. Sauce tournée : recommencer avec une cuillerée d'eau chaude ou de vinaigre bouillant (ou un nouveau jaune, ou une cuillerée de moutarde) et incorporer peu à peu la sauce tournée. Sans œufs : remplacer par du lait concentré non sucré, du fromage blanc moutardé ou de la mie de pain humectée."],
+["Hollandaise tournée","Réincorporer progressivement dans un bol avec une cuillerée d'eau bouillante ou de jus de citron."],
+["Béarnaise décomposée","Repartir au bain-marie avec un jaune d'œuf et une cuillerée d'eau froide."]
+]},
+{"t":"h3","x":"Roux et béchamel"},
+{"t":"dishes","items":[
+["Roux brun","Démarrer sur des oignons dorés pour accentuer la couleur sans brûler la farine."],
+["Béchamel","Incliner la casserole pendant la cuisson pour empêcher la sauce de coller au fond."]
+]},
+{"t":"h3","x":"Finitions et conservation des sauces"},
+{"t":"dishes","items":[
+["Éviter la peau en surface","Déposer une pellicule de beurre fondu, du lait, du bouillon, du vin, un voile de sucre ou un papier beurré sur la surface."],
+["Brillance","Incorporer une noix de beurre frais hors du feu au moment de servir."],
+["Coloration","Utiliser un concentré de chicorée cuite au sucre ou du caramel."]
+]}
+]}
+]}

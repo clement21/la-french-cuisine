@@ -1,0 +1,307 @@
+{
+"h1":"Library",
+"intro":"Reference books on French cooking, summarised and laid out for reading: traditions, recipes, techniques and tips. Each page draws on a book named at the foot of the page.",
+"meta":["Library: reference books | The French Cuisine","Summaries of reference books on French cooking: Savoyard gastronomy, Lyonnaise cuisine, and practical kitchen tips and tricks."],
+"nav":"Library",
+"items":[
+{"id":"savoie","doc":"La cuisine savoyarde","slug":"savoyard-cuisine","title":"Savoyard cuisine","sub":"Three traditions, from peasant soups to mountain game, and over a hundred preparations sorted by family.",
+"meta":["Savoyard cuisine: traditions, recipes and cheeses","Peasant, bourgeois and hotel traditions: the repertoire of Savoyard cooking, from fondues to farçons, from gâteau de Savoie to liqueurs."],
+"source":"Monique Lansard, Recueil de la gastronomie savoyarde.",
+"blocks":[
+{"t":"p","x":"Savoyard cooking draws its character from geography: a land of passage that links different civilisations. It rests on three great traditions."},
+{"t":"h2","x":"Historical background and culinary traditions"},
+{"t":"list","items":[
+"<strong>The peasant tradition of the high valleys.</strong> Marked by simplicity and historical poverty: in the 17th century, bread consumption is estimated at between 1.2 kg and 2 kg per person per day. It is made of soups, potato dishes (farçon, farcement, rambollets), polenta (introduced in the 18th century), salted meats (mostly goat) and festive sweets (rice pudding, fritters, rissoles).",
+"<strong>The bourgeois and aristocratic tradition.</strong> Born in the 18th century and in full bloom in the 19th, in the houses of local notables, it includes refined cheese preparations (gnocchi or niokis, soufflés, ramequins), fresh meats and game (fricandeau, civets, salmis) and elaborate desserts (sambayon, flans, dry cakes).",
+"<strong>The hotel and tourist tradition.</strong> Born from welcoming travellers on the great access routes, such as the Roman road over the Little St Bernard, it brought spices, sweet-and-savoury pairings, saffron breads and flavoured charcuterie (fennel, aniseed). It also showcased exceptional produce: lake fish (féras, trout, Arctic char), mountain game and mushrooms."
+]},
+{"t":"h2","x":"Soups, hot starters, pâtés and terrines"},
+{"t":"h3","x":"Soups"},
+{"t":"dishes","items":[
+["Broad bean soup","Browned lardons, leeks, broad beans (fresh or dried), potatoes, savory and cream."],
+["Pebble soup (soupe au caillou)","Leeks, turnips, onions and potatoes, with a large stone dropped into the pot so the boil crushes the vegetables."],
+["Sorrel soup","Sorrel melted in butter, cubes of stale bread, moistened with water then bound with cream."],
+["Barley or wheat groats soup","Groats cooked for a long time with mashed potatoes, cornmeal and fresh milk."],
+["Herb soup","A green mix (leek, sorrel, spinach, dandelion, chard) softened in butter and then cooked with potatoes."],
+["Rich soup (soupe grasse)","Pot-au-feu broth poured over alternating layers of toasted bread, browned onions and Beaufort, simmered for a very long time."]
+]},
+{"t":"h3","x":"Pâtés and terrines"},
+{"t":"dishes","items":[
+["Chamois liver terrine with hazelnuts","Chamois liver marinated in Savoie marc and juniper berries, minced with pork throat, breadcrumbs and hazelnuts, cooked in a bain-marie."],
+["Pâté en croûte","Veal marinated in vinegar, pork stuffing and lightly salted pork in homemade pastry, baked."],
+["Family hot pâté","Squares of veal marinated in vinegar and a mince of bacon, onions, parsley and citron, served with a brown sauce of vinegar and Madeira."],
+["Easter pâté","Kid stewed in white wine with herbs and Corinth raisins, cooled in its own jelly."]
+]},
+{"t":"h2","x":"Cheese specialities and fondues"},
+{"t":"p","x":"In Savoie, a distinction is made between the <em>tome</em>, the everyday domestic cheese, often lean (Tome des Bauges, du Mont-Cenis, de Tarentaise, d'Abondance), and the cooked-curd cheeses (Beaufort, Emmental) or uncooked pressed cheeses (Reblochon, Tamié, Vacherin des Bauges)."},
+{"t":"h3","x":"Fondues"},
+{"t":"dishes","items":[
+["Bauges fondue","Vacherin des Bauges melted slowly in a caquelon rubbed with garlic, with a little water, poured over toasted country bread and never allowed to boil."],
+["Last century's fondue","Comté soaked in water, melted with butter, flour, whole eggs and cream, served in ramekins."],
+["Winter sports fondue","Originally from Switzerland, introduced around 1920: equal parts Beaufort, Comté and Emmental melted in white wine with a garlic clove and kirsch."]
+]},
+{"t":"h3","x":"Cheese dishes and gratins"},
+{"t":"dishes","items":[
+["Niokis","Savoury choux paste enriched with Parmesan, poached in boiling milk then baked au gratin with béchamel and Parmesan."],
+["Goat cheese pâté","Parmesan béchamel, diced ham and fresh goat cheeses, baked on shortcrust pastry and dusted with sugar."],
+["Fondue gratin","Cheese soufflé batter of grated cheese, butter, flour, milk and whisked egg whites."],
+["Beaufort talmouses","Squares of puff pastry filled with a mix of milk, butter, eggs and slivers of Beaufort."],
+["Ramequin","A light soufflé of butter, flour, Parmesan, water and egg yolks, folded with whisked whites."],
+["Friands","Béchamel with rehydrated dried boletes, diced ham, Gruyère and eggs, cut into squares, breaded and fried."]
+]},
+{"t":"h2","x":"Eggs and omelettes"},
+{"t":"dishes","items":[
+["Omelette with croutons and bacon","Blanched then browned lardons, bread croutons and beaten eggs."],
+["Wild mushroom omelette","Mushrooms sautéed over high heat without water, browned in butter before the eggs go in."],
+["Sorrel omelette","Sorrel melted in butter and added to beaten eggs."],
+["Savoyard omelette","Softened leeks, diced sautéed potatoes, lardons and slivers of Gruyère."],
+["Scrambled eggs with morels","Eggs cooked in a bain-marie with chopped fresh morels, bound with crème fraîche."],
+["Savoyard fried eggs","Potatoes sautéed in butter, covered with grated Beaufort, eggs cracked on top and finished with cream."]
+]},
+{"t":"h2","x":"Lake and river fish"},
+{"t":"dishes","items":[
+["Cold féra from Lake Geneva","Féra browned in butter with onions and shallots, then cooked in stock; the reduced juices are whisked into a mustard mayonnaise to coat the fish."],
+["Trout fillets in cream","Fillets poached in white wine, the reduced juices bound with cream and eggs until the texture of a flan."],
+["Arctic char","Baked with sliced porcini, white wine and crème fraîche."],
+["Lavaret with sorrel","Fish stuffed with blanched sorrel, breadcrumbs and egg, coated in a sauce of white wine, cream, flour and mustard."],
+["Savoyard frogs' legs","Legs sautéed in butter with garlic and onions, bound with eggs like an omelette and deglazed with peppered vinegar."],
+["Crayfish","Crayfish sautéed in butter, flambéed with marc and served in a sauce of white wine reduced with shallots and cream."]
+]},
+{"t":"h2","x":"Charcuterie and meats"},
+{"t":"h3","x":"Local charcuterie"},
+{"t":"dishes","items":[
+["Diots in white wine","Sausages cooked in the steam of white wine over a bed of vine cuttings, served with BF potatoes and a shallot and tomato sauce."],
+["Longeoles with fennel","Pork sausages made with rind and casing, cooked with fennel and poached with potatoes."],
+["Pormons (or pormonaises)","Pork sausages enriched with chopped cabbage (or turnips, leeks, chard), pan-fried or poached."],
+["Magland sausages in oil","Pan-fried with rice simmered in stock and dusted with Gruyère."]
+]},
+{"t":"h3","x":"Traditional meat dishes"},
+{"t":"dishes","items":[
+["Savoyard potée","A festive dish bringing together ham hock, salted shoulder, lightly salted pork, green cabbage, carrots, turnips, chestnuts and potatoes, once cooked with salted goat."],
+["Hen with rice","The traditional Christmas Eve dish: hen poached in aromatic broth, served with rice browned then cooked in the juices, and a poulette sauce (roux, cream, egg yolks)."],
+["Sauté of kid","Pieces browned in flour, cooked in white wine and stock with small onions, carrots and potatoes, lifted with a splash of vinegar."],
+["Caïon fricassée (pork)","Pork neck marinated in red wine, eau-de-vie and aromatics, simmered then bound with blood and cream."],
+["Veal noix à l'Aixoise","A braised roast surrounded by small vegetables (onions, carrots, turnips, celery) and chestnuts."]
+]},
+{"t":"h2","x":"Mountain game"},
+{"t":"dishes","items":[
+["Partridge with fidès","Half partridges browned in butter, covered with bacon and Gruyère, cooked on a bed of vermicelli browned in stock."],
+["Hazel grouse","Washed in milk, browned in a casserole with white wine, or served gratinéed with a Beaufort and cream béchamel."],
+["Black grouse with bilberries","Small grouse rinsed in milk, roasted in a casserole, served with a reduction of the cooking juices in white wine and fresh bilberries."],
+["Leg of chamois","A young animal (éterlou) is roasted after a marinade of marc and oil; an adult is braised after five days in white wine and vinegar, and served with a roux made from the cooking juices."],
+["Roast ibex","Trimmed meat, marinated in white wine, browned in its own fat and simmered into a short jus bound with cream and beurre manié."]
+]},
+{"t":"h2","x":"Vegetables, potatoes and side dishes"},
+{"t":"dishes","items":[
+["Pela (or pela des Aravis)","Potatoes and onions browned in a pan, covered with a whole scraped Reblochon and melted under a lid."]
+]},
+{"t":"h3","x":"Vegetable gratins"},
+{"t":"dishes","items":[
+["Savoyard leeks","Blanched sections, layered and gratinéed with breadcrumbs and Gruyère."],
+["Cabbage gratin","Blanched, chopped cabbage mixed with a rich béchamel, cream and Gruyère."],
+["Potato gratin","Slices rubbed with garlic, cooked in a mild pot-au-feu broth then browned with butter."],
+["Cardoon gratin","Cardoons cooked in a lemony blanc, coated in a stock-based sauce, with slices of poached beef marrow and Gruyère."],
+["Lettuce gratin","Lettuces braised under a lid, laid out with blanched lardons, moistened with their reduced juices and gratinéed."]
+]},
+{"t":"h3","x":"Farçons and farcements, the emblematic peasant dishes"},
+{"t":"dishes","items":[
+["Farcement (à la rabolire)","Raw grated potatoes mixed with prunes, raisins, browned lardons, flour, an egg and eau-de-vie, moulded in slices of lightly salted pork and cooked for four hours in a bain-marie in a special mould, the <em>rabolire</em>."],
+["Cabbage farcement","Mashed potato, chopped cabbage heart, prunes, raisins, lardons and onions, cooked for four hours in the oven in a casserole lined with blanched cabbage leaves."],
+["Farçon des Bauges","Sweetened, buttered mashed potato bound with cream and cooked for three hours in a low oven."],
+["Classic farçon","Mashed potato enriched with eggs, milk, butter and chervil, dusted with Gruyère."]
+]},
+{"t":"h3","x":"Other country preparations"},
+{"t":"dishes","items":[
+["Potatoes in white wine","Simmered in stock and white wine with diced bacon and onions."],
+["Chestnuts with pears and potatoes","Peeled chestnuts cooked in stock with diced pears and potatoes, finished with crème fraîche."],
+["Thistle hearts","Young thistle heads (the \"suns\") cleaned, blanched, filled with béchamel and gratinéed with cheese."],
+["Mushrooms","Boletes stuffed with cured ham and persillade; mushrooms grilled in walnut oil and topped with a mince of herbs and breadcrumbs; potato gratin with porcini and cream."]
+]},
+{"t":"h2","x":"Pasta, grains and traditional doughs"},
+{"t":"dishes","items":[
+["Polenta","Cornmeal browned in butter, cooked in stock, loosened with milk or cream and baked au gratin with Beaufort."],
+["Matafan (matefaim)","A thick rustic pancake that peasants ate in the morning to last the day; a batter of flour, eggs, eau-de-vie and water, fried in olive oil."],
+["Rambollets","Dumplings of mashed potato (raw and cooked) and flour, wrapped around a dried fruit (prune, fig, pear), poached then coated with golden onions in cream."],
+["Fricot","Potatoes and firm pears sautéed in butter, dusted with flour, simmered in water and bound with cream."],
+["Potato fritters","Raw grated potatoes mixed with eggs, flour, milk and chervil, fried as patties."],
+["Herb ravioles","A mince of spinach, chard and fresh tomme bound with eggs and flour, shaped into lengths, poached then gratinéed with cream and Gruyère."],
+["Agnelots","Small fresh-pasta ravioli filled with sorrel, spinach, minced mutton, Parmesan and fresh tomme, poached then gratinéed."],
+["Fidès","Raw vermicelli browned in butter with onions and garlic, cooked dry in stock and sprinkled with cheese."],
+["Crozets","Small square traditional pasta, poached in boiling water, baked into a gratin with Beaufort, stock and brown butter."]
+]},
+{"t":"h2","x":"Desserts, cakes and sweets"},
+{"t":"dishes","items":[
+["Gâteau de Savoie","Its origin goes back to the 14th century: it is said to have been created by Pierre de Yenne or Jean de Belleville for Amadeus VIII and Emperor Sigismund. A very light sponge made with whisked egg yolks and sugar, starch, flour, lemon zest and very firm egg whites, baked slowly."],
+["Rissoles (\"lé rézoulé\")","Small turnovers in puff or shortcrust pastry, filled with dry jam (Apremont) or quince paste (Bauges), fried or baked."],
+["Saint-Genix brioche (formerly \"bognon\")","A rich, butter-laden yeast brioche kneaded with crushed pink pralines and topped with whole pralines and coarse sugar."],
+["Rioutes","Rings of aniseed bread dough shaped into figures of 8, poached in boiling water then dried in a very low oven; eaten dipped in red wine."],
+["Sambayon","The Savoyard version of Piedmontese <em>zabaione</em>: a sabayon of egg yolks, sugar, lemon zest, white wine and vermouth whisked over a bain-marie."],
+["Chocolate pavé","A bourgeois dessert from Chambéry: sponge fingers soaked in kirsch, covered with a rich mix of melted chocolate, butter and eggs."],
+["Épognes","Brioche-style or bread-dough tarts filled with fresh fruit (bilberries, cherries) or with pastry cream flavoured with pralines (praline épogne)."],
+["Tarts","Bilberry tart on a shortcrust base sprinkled with semolina; winter fruit tart (caramelised dried grapes and pears); prune and raisin tart infused with red wine and eau-de-vie."],
+["Little sweets","Bugnes (lozenges of yeast dough flavoured with rum and lemon zest, fried), nichons de Grésy (oven-dried meringues), saffron cakes (saffron-gold shortbreads), craquelins, chocolate truffles."]
+]},
+{"t":"h2","x":"Liqueurs and drinks of the Alps"},
+{"t":"dishes","items":[
+["St John's wort liqueur","St John's wort flowers macerated for fifteen days in the sun in fruit alcohol, strained and sweetened."],
+["Sloe liqueur","Crushed sloes and stones, macerated for a month in the sun with sugar and alcohol."],
+["Juniper spirit","Juniper berries infused for six weeks with marc, sugar, cinnamon, lemon and cloves."],
+["Alpine tea (vulnéraire)","Sideritis leaves macerated in sweetened Savoie marc."]
+]}
+]},
+{"id":"lyon","doc":"La gastronomie lyonnaise","slug":"lyonnaise-gastronomy","title":"Lyonnaise gastronomy","sub":"The city \"of the gullet\", its mères, its bouchons and its mâchon, then the emblematic recipes of Lyonnaise cooking.",
+"meta":["Lyonnaise gastronomy: bouchons, mères and recipes","The history of Lyon's food culture, from the bouchon to the mâchon, and its signature recipes: pike quenelles, gratinée, cervelle de canut, tablier de sapeur."],
+"source":"Cuisine lyonnaise, Petits Pratiques Hachette series.",
+"blocks":[
+{"t":"h2","x":"History and traditions"},
+{"t":"h3","x":"Lyon, the city \"of the gullet\""},
+{"t":"p","x":"From Gaulish and Roman times with Lugdunum, then in the Renaissance, praised by Erasmus and Rabelais, Lyon has cultivated the art of good eating. In the 15th century, the creation of four royal fairs made it a commercial hub, ideal for large convivial gatherings."},
+{"t":"p","x":"The tradition was nourished by working-class culture, notably that of the canuts, the silk weavers, fond of hearty meals, and by the skill of the famous <em>mères lyonnaises</em>. These exceptional cooks elevated local produce through simple, authentic and tasty cooking."},
+{"t":"h3","x":"An exceptional terroir at the city gates"},
+{"t":"list","items":[
+"<strong>Fish and poultry.</strong> Bresse poultry, and the pike and carp of the Dombes ponds.",
+"<strong>Vineyards.</strong> Beaujolais, with its ten crus, and the Coteaux du Lyonnais, inseparable from traditional meals.",
+"<strong>Cheeses and charcuterie.</strong> Saint-Marcellin, Mont-d'Or, and the art of pork butchery: rosette, jésus, sabodet, cervelas."
+]},
+{"t":"h3","x":"Bouchons and the mâchon"},
+{"t":"p","x":"The <strong>bouchons</strong> date from the stagecoach era, when horses were rubbed down (\"bouchonnés\") with wisps of straw. The word ended up meaning the bistro where people eat generously."},
+{"t":"p","x":"The <strong>mâchon</strong> is the hearty snack that workers and silk delivery men took at around ten in the morning: assorted charcuterie, washed down with a \"pot\" of Beaujolais of 46 cl."},
+{"t":"h2","x":"The emblematic recipes"},
+{"t":"p","x":"The book gathers many traditional recipes, arranged by category."},
+{"t":"h3","x":"Soups and starters"},
+{"t":"dishes","items":[
+["Lyonnaise soup with Beaujolais","A vegetable and tapioca broth reduced with red wine."],
+["Truffle soup","A festive soup topped with puff pastry, with foie gras and truffle."],
+["Lyonnaise gratinée","The famous onion soup, gratinéed with Gruyère."],
+["Cervelle de canut","Fromage blanc beaten with fine herbs, shallot, garlic, oil and white wine."],
+["Lyonnaise salad bowl (saladier lyonnais)","Curly endive salad with sheep's feet, chicken livers, herring and croutons."],
+["Lyon sausage in brioche","Pistachio sausage, cooked and wrapped in golden brioche dough."],
+["Dandelion with lardons (groin d'âne)","A salad of dandelion, called <em>groin d'âne</em> (donkey's snout) in Lyon, served with lardons and eggs."]
+]},
+{"t":"h3","x":"Fish"},
+{"t":"dishes","items":[
+["Pike quenelles","The great speciality, made from Dombes pike flesh and served coated in a rich sauce (bisque or sauce suprême, for example)."],
+["Dombes carp","Baked on a bed of mushrooms, shallots and Pouilly-Fuissé."],
+["Nini's Beaujolais matelote","A river-fish stew cooked in red wine."]
+]},
+{"t":"h3","x":"Meat, poultry and offal"},
+{"t":"dishes","items":[
+["Tablier de sapeur","A piece of beef tripe marinated in white wine, breaded and fried."],
+["Mère Filloux's poularde","Bresse pullet poached with vegetables and truffled under the skin."],
+["Chicken in vinegar","Pieces of Bresse chicken browned and simmered in a reduction of wine vinegar and white wine."],
+["Lyonnaise tripe (gras-double)","Beef tripe sautéed in a pan with caramelised onions, deglazed with vinegar and white wine."],
+["Spoon leg of lamb (gigot à la cuillère)","Leg of lamb simmered very gently for seven hours."]
+]},
+{"t":"h3","x":"Side dishes, sauces and desserts"},
+{"t":"dishes","items":[
+["Cardoon gratin","A traditional vegetable of Roman origin, cooked and gratinéed under a béchamel made with meat juices."],
+["Criques paillasson and crêpes Parmentier","Crisp pancakes of grated potato, or made from mashed potato."],
+["Lyonnaise sauce","A sauce of browned onions, white wine and vinegar."],
+["Bugnes and Gnafron waffles","Crisp carnival fritters flavoured with lemon or rum, and soft waffles."],
+["Mireille's matefaim","A thick pan-fried pancake filled with grated apples, once eaten to \"stop the hunger\" of the workers."]
+]}
+]},
+{"id":"trucs","doc":"Mille et un trucs de cuisine","slug":"a-thousand-and-one-kitchen-tricks","title":"A thousand and one kitchen tricks","sub":"Rescue tips, stale bread, leftovers and sauces: the know-how of a family kitchen that wastes nothing.",
+"meta":["A thousand and one kitchen tricks: tips, leftovers, sauces","Fix an over-salted dish, revive stale bread, use up leftovers, save mayonnaise and béchamel: the practical tips of Huguette Couffignal."],
+"source":"Huguette Couffignal, Mille et un trucs de cuisine (Éditions Solar, 1976; Éditions internationales Alain Stanké, 1980-1981).",
+"blocks":[
+{"t":"p","x":"A practical collection of know-how, tips and techniques that complements traditional recipes and makes everyday family cooking easier."},
+{"t":"h2","x":"Rescue tips"},
+{"t":"dishes","items":[
+["Dish too salty","Dip a sugar cube into the dish for a few seconds to absorb the salt, or cook a few slices of raw potato in it."],
+["Burnt dish or sauce","Dip the base of the pan in cold water and put a damp cloth under the lid to get rid of the smell."],
+["Stale coffee","Soak it in cold water for fifteen minutes, then dry it in a pan with a few pinches of sugar."],
+["Split mayonnaise","Add a spoonful of boiling vinegar to a little of the sauce in another bowl, then gradually whisk the rest back in."],
+["Dish too fatty","Put lettuce leaves in the pot while cooking to absorb the excess fat."],
+["Missing egg in a cake","Beat half a glass of milk with a splash of vinegar."]
+]},
+{"t":"h2","x":"Stale bread and breadcrumbs"},
+{"t":"h3","x":"Reviving and keeping bread"},
+{"t":"dishes","items":[
+["Reviving stale bread","Quickly dampen the crust under the tap (or wrap the loaf in a damp cloth), then put it in a hot oven. The heat turns the water into steam, which rehydrates the starch: the crumb becomes soft again and the crust crisp."],
+["Keeping fresh bread","Keep it in a stoneware or terracotta jar with a lid. White bread in a tin box; dark bread in a damp cloth."],
+["Homemade rusks","Cut the bread into thin slices, moisten lightly with sweetened milk or sugar syrup, then dry in a low oven. They keep for a very long time in a tin."]
+]},
+{"t":"h3","x":"Making and storing breadcrumbs"},
+{"t":"dishes","items":[
+["Homemade breadcrumbs","Dry pieces of very stale bread in the oven, then crush them with a rolling pin or put them through a fine-grid mill or mincer."],
+["Breadcrumb flour","Put through a fine grain mill, breadcrumbs give a \"flour\" that can be used in baking (cake batters, babas, sponge cake). Cakes rise very well if the egg whites are whisked to stiff peaks."],
+["Storage","In a glass jar or an airtight metal tin."]
+]},
+{"t":"h3","x":"Savoury recipes with stale bread"},
+{"t":"dishes","items":[
+["Croustades","Cut thick slices of stale bread, hollow out the centre to make a tartlet case, butter and toast or bake before filling (mushrooms, sauces, etc.)."],
+["Pain perdu with meat juices","Soak slices in warm milk, dip in beaten eggs with salt, pepper and a good meat jus, then pan-fry."],
+["Dandelion crépiau or cheese crêpée","Mix fine breadcrumbs with milk, beaten eggs and grated cheese or chopped dandelion or greens, melt in the pan to make a thick batter, then brown both sides like a big pancake."],
+["Lorraine crépiau (with potatoes)","Mix 250 g breadcrumbs, 700 g raw grated potatoes, eggs and a little milk, then pan-fry as thick pancakes."],
+["Cheese straws (apéritif)","Mix a cup of grated cheese, a cup of breadcrumbs and a cup of butter shavings with a touch of water; roll out, cut into straws and bake."],
+["Auvergne patranque or cantamerlou","Fry moistened, squeezed breadcrumbs in a pan with hot butter, add Cantal (or fromage blanc for the cantamerlou) and stir until the cheese melts and strings."],
+["Bread mique (for soup or potée)","Mix soaked, squeezed bread crumb, chopped salt pork, pan-fried onion, chopped herbs, spices and eggs. Shape into a ball (\"the dove\"), wrap in a cloth or blanched cabbage leaves and poach for three quarters of an hour in the soup broth."],
+["Garlic chapons","Bread croutons rubbed with garlic, to add to salads (such as chicory) or to tuck into the cavity of a bird before roasting."],
+["Breadcrumb sauce","Infuse onion and bay in milk, strain, then thicken with white breadcrumbs over low heat. Add a knob of butter and nutmeg."],
+["Patafla (stuffed picnic loaf)","Hollow out a baguette or a long sandwich loaf, fill with a mix of leftover pan-fried meat, onions, moistened crumb and egg, then let it firm up in the cold before serving in slices."]
+]},
+{"t":"h3","x":"Sweet recipes with stale bread"},
+{"t":"dishes","items":[
+["Almond tartlets","Slices of bread (toasted or not) spread with almond cream (ground almonds, sugar, butter, orange blossom water, egg) and baked until golden."],
+["Pain du Sérail","Heat 250 g honey, 125 g sugar and 125 g butter. Add 150 g breadcrumbs, cook while stirring, spread in a dish, let cool and cut into triangles to serve with cream."],
+["Bread soufflé","Make a thick base by swelling and cooking white breadcrumbs in milk, then add the egg yolks, the flavouring and the whisked whites before baking."]
+]},
+{"t":"h2","x":"Using up leftovers"},
+{"t":"h3","x":"The general rule"},
+{"t":"p","x":"To reuse a leftover in a full dish, it should make up at least a third of the finished dish. If there is less, it is better to add it to a soup or broth."},
+{"t":"h3","x":"Reheating without drying out"},
+{"t":"dishes","items":[
+["Stews, purées, vegetables, pasta","First pour three spoonfuls of water or stock into the base of the pan before adding the leftovers, then heat gently."],
+["Red meat or roast leg of lamb","Reheat very gently in a bain-marie, or sealed in an aluminium parcel poached in boiling water, or between two plates set over a pan of boiling water. For lamb: fifteen minutes in a low oven in a base of garlicky water."],
+["Pre-cooked pasta","Toss off the heat into a pan of boiling water, stir for a few minutes to loosen the clumps, then drain."],
+["Puff pastries, friands, croissants, pâtés en croûte","Wrap in baking paper or foil, run the parcel under cold water and put in a hot oven for fifteen minutes."],
+["Leftover mashed potato","Add creamy milk, fresh butter and grated cheese before reheating, to remove the reheated taste."]
+]},
+{"t":"h3","x":"Transforming leftover meat and fish"},
+{"t":"dishes","items":[
+["Meatballs and croquettes","Mince the meat or fish, mix in equal parts with panade (or moistened, squeezed bread crumb), season generously (onions, garlic, herbs, spices), bind with egg, shape, bread and pan-fry or deep-fry."],
+["Rissoles","Wrap the filling in small rounds of shortcrust or puff pastry and bake or fry."],
+["Scotch eggs","Wrap hard-boiled eggs in a thick layer of stuffing (made from leftover meat or seasoned breadcrumbs), bread and pan-fry."],
+["Quenelles","Reduce the leftovers (white meat, fish, vegetables) to a smooth purée. Add half a bowl of panade for two bowls of purée, pound with butter, herbs and a dash of cognac, bind with egg white, shape and poach in barely simmering water."],
+["Ham fat and rind","The rind flavours vegetable soups; chopped fat adds moistness to stuffings."]
+]},
+{"t":"h3","x":"Using egg whites on their own"},
+{"t":"dishes","items":[
+["In savoury cooking","Add them beaten to minces or meatballs to give them hold."],
+["In baking and desserts","Floating island, snow eggs, dames blanches, or gâteau d'argent (125 g butter, 250 g sugar, 125 g flour and 5 whisked egg whites, in a low oven for 45 minutes)."],
+["\"Virgin\" cream","Bring milk, sugar and one or two egg whites whisked to peaks to a gentle heat, stirring well."]
+]},
+{"t":"h3","x":"Other common leftovers"},
+{"t":"dishes","items":[
+["Cut onions","Keep them in the cold in an airtight jar so the smell does not contaminate other foods."],
+["Pea or bean pods","Dry them to colour and flavour stocks later (or as a diuretic infusion)."],
+["Cut lemon","Set it face down on a saucer with a little water or vinegar, or salt the slice. For mustard, place a lemon slice on the opened jar."],
+["Opened beer or sparkling water","Store the bottle upside down in a bowl of water to preserve the bubbles."]
+]},
+{"t":"h2","x":"Sauces and thickening"},
+{"t":"h3","x":"General principles"},
+{"t":"dishes","items":[
+["Mixing","Use a whisk rather than a wooden spoon to blend and smooth without lumps."],
+["Starch thickeners (flour, cornflour)","Always mix with cold liquid before heating, whisking all the while."],
+["Egg liaisons","Always make them off the heat to avoid curdling."]
+]},
+{"t":"h3","x":"Emulsified sauces"},
+{"t":"dishes","items":[
+["Mayonnaise","No more than a quarter of a litre of oil per yolk. Split sauce: start again with a spoonful of hot water or boiling vinegar (or a new yolk, or a spoonful of mustard) and gradually work in the split sauce. Without eggs: replace with unsweetened condensed milk, mustardy fromage blanc or moistened bread crumb."],
+["Split hollandaise","Gradually work back into a bowl with a spoonful of boiling water or lemon juice."],
+["Curdled béarnaise","Start again over a bain-marie with an egg yolk and a spoonful of cold water."]
+]},
+{"t":"h3","x":"Roux and béchamel"},
+{"t":"dishes","items":[
+["Brown roux","Start with browned onions to deepen the colour without burning the flour."],
+["Béchamel","Tilt the pan while cooking to stop the sauce from sticking to the bottom."]
+]},
+{"t":"h3","x":"Finishing and keeping sauces"},
+{"t":"dishes","items":[
+["Avoiding a skin","Lay a film of melted butter, milk, stock, wine, a veil of sugar or a piece of buttered paper on the surface."],
+["Shine","Stir in a knob of fresh butter off the heat at the moment of serving."],
+["Colouring","Use a concentrate of chicory cooked with sugar, or caramel."]
+]}
+]}
+]}
