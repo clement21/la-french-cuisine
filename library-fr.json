@@ -1,7 +1,7 @@
 {
 "h1":"Bibliothèque",
 "intro":"Des ouvrages de référence sur la cuisine française, résumés et mis en forme : traditions, recettes, gestes et astuces. Chaque page s'appuie sur un livre cité en fin de page.",
-"meta":["Bibliothèque : ouvrages de référence | The Village Table","Résumés d'ouvrages de référence sur la cuisine française : gastronomie savoyarde, cuisine lyonnaise, trucs et astuces de cuisine."],
+"meta":["Bibliothèque : ouvrages de référence | Village Table","Résumés d'ouvrages de référence sur la cuisine française : gastronomie savoyarde, cuisine lyonnaise, trucs et astuces de cuisine."],
 "nav":"Bibliothèque",
 "items":[
 {"id":"savoie","doc":"La cuisine savoyarde","slug":"cuisine-savoyarde","title":"La cuisine savoyarde","sub":"Trois traditions, de la soupe paysanne aux gibiers de montagne, et plus de cent préparations classées par famille.",
