@@ -280,6 +280,8 @@ div.wrap:has(>.breadcrumb)+section,div.wrap:has(>.breadcrumb)+article>section{pa
 /* Pages de lecture (FAQ, essai, sources, mentions, fiches de la Bibliothèque) : tout le contenu
    tient dans une colonne centrée à la largeur de lecture. Les pages en grille gardent la pleine largeur. */
 main:has(.prose,.faq,.essay) .wrap{width:min(46rem,100% - 2.5rem)}
+/* Histoire : la frise (dates 8,5 rem + texte 42 rem + marges) tient dans 54 rem, centrée elle aussi */
+main:has(.timeline) .wrap{width:min(54rem,100% - 2.5rem)}
 .essay{max-width:none}
 """)
 CSS = min_css(BASE_CSS) + EXTRA_CSS
