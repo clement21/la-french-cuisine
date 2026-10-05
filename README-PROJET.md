@@ -13,7 +13,7 @@ Blog bilingue (FR/EN) sur l'évolution de la gastronomie française, la sauvegar
 
 ## Décisions prises
 
-- Nom : « The Village Table », identique en français et en anglais (décision du 5 octobre 2026 ; remplace « The French Cuisine », lui-même choisi le même jour à la place de « La Cuisine Française » côté FR). Nom plus distinctif que « The French Cuisine » ; disponibilité de la marque et du domaine encore à vérifier.
+- Nom : « The Village Table », identique en français et en anglais (décision du 5 octobre 2026 ; remplace « The French Cuisine », lui-même choisi le même jour à la place de « La Cuisine Française » côté FR). Nom plus distinctif que « The French Cuisine » ; disponibilité de la marque et du domaine encore à vérifier. « Table Town » a été envisagé puis écarté : la sonorité plaisait, mais « town » (une ville) contredit le sujet du blog, et « The Village Table » fait écho au slogan « Ramenons le village à table ».
 - Règle des 6 ingrédients : tout compte (sel, poivre, huile, beurre, vin, cidre) sauf l'eau.
 - Pas de cookie, pas d'outil de mesure d'audience à ce stade (à mettre à jour dans la FAQ et les mentions légales si une mesure d'audience est ajoutée).
 - Un nouveau document « texte » ajouté au projet devient une page de la Bibliothèque (une page par texte), en FR et EN.
