@@ -284,8 +284,8 @@ APP_JS = r"""
 (function(){
 "use strict";
 var d=document,root=d.documentElement,FR=root.lang==="fr",reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-var S=FR?{toDark:"Blanc sur noir",toLight:"Noir sur blanc",aDark:"Passer en blanc sur noir",aLight:"Passer en noir sur blanc",listen:"Écouter l'essai",stop:"Arrêter l'écoute",stopped:"Lecture arrêtée.",reading:"Lecture à voix haute avec la voix de votre appareil.",remove:"Supprimer"}
-:{toDark:"White on black",toLight:"Black on white",aDark:"Switch to white on black",aLight:"Switch to black on white",listen:"Listen to the essay",stop:"Stop listening",stopped:"Stopped.",reading:"Reading aloud with your device's voice.",remove:"Remove"};
+var S=FR?{toDark:"Blanc sur noir",toLight:"Noir sur blanc",aDark:"Passer en blanc sur noir",aLight:"Passer en noir sur blanc",listen:"Écouter l’essai",stop:"Arrêter l’écoute",stopped:"Lecture arrêtée.",reading:"Lecture à voix haute avec la voix de votre appareil.",remove:"Supprimer"}
+:{toDark:"White on black",toLight:"Black on white",aDark:"Switch to white on black",aLight:"Switch to black on white",listen:"Listen to the essay",stop:"Stop listening",stopped:"Stopped.",reading:"Reading aloud with your device’s voice.",remove:"Remove"};
 var themeBtn=d.getElementById("themeBtn");
 function themeLabel(){var dark=root.getAttribute("data-theme")==="dark";themeBtn.textContent=dark?S.toLight:S.toDark;themeBtn.setAttribute("aria-label",dark?S.aLight:S.aDark);}
 if(themeBtn){themeBtn.addEventListener("click",function(){var next=root.getAttribute("data-theme")==="dark"?"light":"dark";root.setAttribute("data-theme",next);try{localStorage.setItem("vt-theme",next);}catch(e){}themeLabel();});themeLabel();}
@@ -333,7 +333,7 @@ if(fb){
 var rows=[].slice.call(d.querySelectorAll("#recipeRows .row")),chips=[].slice.call(fb.querySelectorAll("button[data-facet]")),
 qi=d.getElementById("rsearch"),cnt=d.getElementById("resultCount"),none=d.getElementById("noResult"),act=d.getElementById("activeCount"),box=d.getElementById("filterBox"),
 sel={moment:[],type:[],main:[],terroir:[],n:[]};
-var fold=function(x){return x.toLowerCase().replace(/œ/g,"oe").replace(/æ/g,"ae").normalize("NFD").replace(/[̀-ͯ]/g,"");};
+var fold=function(x){return x.toLowerCase().replace(/’/g,"'").replace(/œ/g,"oe").replace(/æ/g,"ae").normalize("NFD").replace(/[̀-ͯ]/g,"");};
 var RC=FR?function(n,t){return n+(n>1?" recettes":" recette")+" sur "+t;}:function(n,t){return n+(n===1?" recipe":" recipes")+" out of "+t;};
 rows.forEach(function(r){r._t=fold(r.getAttribute("data-q")||"");});
 function sync(){try{var u=new URLSearchParams();Object.keys(sel).forEach(function(k){if(sel[k].length){u.set(k,sel[k].join(","));}});if(qi.value.trim()){u.set("q",qi.value.trim());}var s=u.toString();history.replaceState(null,"",location.pathname+(s?"?"+s:""));}catch(e){}}
@@ -462,7 +462,32 @@ def page_html(lang, key, body, active=None, trail=None, noindex=False, extra_ld=
         lang, '\n'.join(head), t["skip"], header(lang, key, active), bc, body, footer(lang, key))
     return tidy(doc)
 
+# Apostrophe typographique : ' (ou &#x27; produit par esc) après une lettre devient ’.
+# Appliquée au texte, aux attributs lisibles et au JSON-LD ; jamais au CSS, au JS ni aux URL.
+APOS = re.compile(r"(?<=[^\W\d_])(?:'|&#x27;|&#39;)")
+APOS_SKIP = ("href", "src", "class", "id", "style", "rel", "type", "lang", "hreflang")
+
+def _apos_attr(a):
+    if a.group(2) in APOS_SKIP or a.group(2).startswith("on"):
+        return a.group(0)
+    return a.group(1) + APOS.sub("’", a.group(3)) + '"'
+
+def _apos(m):
+    seg = m.group(0)
+    if m.group(1) is not None:                      # <script> : seul le JSON-LD est converti
+        return APOS.sub("’", seg) if "ld+json" in m.group(1) else seg
+    if seg.startswith("<style"):
+        return seg
+    if seg.startswith("<"):                         # balise : valeurs d'attributs lisibles
+        return re.sub(r'(\s([\w:-]+)=")([^"]*)"', _apos_attr, seg)
+    return APOS.sub("’", seg)                       # texte
+
+def apos(h):
+    return re.sub(r"<script\b([^>]*)>.*?</script>|<style\b.*?</style>|<[^>]+>|[^<]+", _apos, h, flags=re.S)
+
 def write(path, content):
+    if content.startswith("<!DOCTYPE html>"):
+        content = apos(content)
     fp = os.path.join(OUT, path.lstrip("/"))
     if fp.endswith("/"):
         fp += "index.html"
