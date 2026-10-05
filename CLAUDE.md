@@ -24,7 +24,7 @@ python3 seo_check.py site                        # doit afficher 0 erreur
 Quand un texte est ajouté dans `sources/` (ou collé dans la conversation), créer **une page**, en français et en anglais :
 1. Ajouter un objet dans `items` de `library-fr.json` ET `library-en.json`, avec le **même `id`** et les **mêmes blocs dans le même ordre** : `id`, `doc` (nom du texte), `slug` (propre à chaque langue), `title`, `sub`, `meta` [titre SEO, description], `source` (auteur, titre, éditeur, année), `blocks`.
 2. Blocs : `{"t":"h2","x":""}`, `{"t":"h3","x":""}`, `{"t":"p","x":""}`, `{"t":"list","items":[""]}`, `{"t":"dishes","items":[["Nom","description"]]}`. HTML autorisé : `<em>`, `<strong>`. Pas de Markdown.
-3. Reprendre fidèlement le contenu (rien d'inventé), corriger les fautes de frappe. Les espaces insécables françaises sont ajoutées par le générateur : ne pas les saisir. De même, l'apostrophe droite ' est convertie en ’ à la génération : saisir l'apostrophe droite.
+3. Reprendre fidèlement le contenu (rien d'inventé), corriger les fautes de frappe. Les espaces insécables françaises sont ajoutées par le générateur : ne pas les saisir. De même, l'apostrophe droite ' est convertie en ’ et les guillemets droits " en “ ” (EN) ou « » (FR) à la génération : saisir les caractères du clavier.
 4. Reconstruire, auditer (0 erreur), puis committer.
 
 ## Règles éditoriales

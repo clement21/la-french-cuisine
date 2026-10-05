@@ -472,32 +472,50 @@ def page_html(lang, key, body, active=None, trail=None, noindex=False, extra_ld=
         lang, '\n'.join(head), t["skip"], header(lang, key, active), bc, body, footer(lang, key))
     return tidy(doc)
 
-# Apostrophe typographique : ' (ou &#x27; produit par esc) après une lettre devient ’.
-# Appliquée au texte, aux attributs lisibles et au JSON-LD ; jamais au CSS, au JS ni aux URL.
+# Typographie à l'écriture des pages HTML, sur le texte, les attributs lisibles et le JSON-LD
+# (jamais sur le CSS, le JS ni les URL) :
+# - apostrophe : ' (ou &#x27; produit par esc) après une lettre devient ’ ;
+# - guillemets droits : “ ” sur les pages anglaises, « » avec espaces insécables sur les pages françaises.
 APOS = re.compile(r"(?<=[^\W\d_])(?:'|&#x27;|&#39;)")
 APOS_SKIP = ("href", "src", "class", "id", "style", "rel", "type", "lang", "hreflang")
+Q_TEXT, Q_ATTR, Q_JSON = re.compile(r'"|&quot;|&#34;'), re.compile(r'&quot;|&#34;'), re.compile(r'\\"')
+Q_OPEN_AFTER = ' \t\n([{—–-/«“"'
 
-def _apos_attr(a):
-    if a.group(2) in APOS_SKIP or a.group(2).startswith("on"):
-        return a.group(0)
-    return a.group(1) + APOS.sub("’", a.group(3)) + '"'
+def _quotes(s, lang, pat, nbsp):
+    """Remplace les guillemets droits trouvés par pat ; ouvrant en début de texte ou après une espace
+    ou une ponctuation ouvrante, s'il est suivi d'un caractère visible, fermant sinon."""
+    def rep(m):
+        prev = s[m.start() - 1] if m.start() else ""
+        nxt = s[m.end()] if m.end() < len(s) else ""
+        opening = (prev == "" or prev in Q_OPEN_AFTER) and nxt != "" and not nxt.isspace()
+        if lang == "fr":
+            return "«" + nbsp if opening else nbsp + "»"
+        return "“" if opening else "”"
+    return pat.sub(rep, s)
 
-def _apos(m):
-    seg = m.group(0)
-    if m.group(1) is not None:                      # <script> : seul le JSON-LD est converti
-        return APOS.sub("’", seg) if "ld+json" in m.group(1) else seg
-    if seg.startswith("<style"):
-        return seg
-    if seg.startswith("<"):                         # balise : valeurs d'attributs lisibles
-        return re.sub(r'(\s([\w:-]+)=")([^"]*)"', _apos_attr, seg)
-    return APOS.sub("’", seg)                       # texte
+def _typo_text(s, lang, pat=Q_TEXT, nbsp="&nbsp;"):
+    return _quotes(APOS.sub("’", s), lang, pat, nbsp)
 
-def apos(h):
-    return re.sub(r"<script\b([^>]*)>.*?</script>|<style\b.*?</style>|<[^>]+>|[^<]+", _apos, h, flags=re.S)
+def typo_html(h):
+    lang = (re.search(r'<html lang="(\w+)"', h) or [None, "en"])[1]
+    def attr(a):
+        if a.group(2) in APOS_SKIP or a.group(2).startswith("on"):
+            return a.group(0)
+        return a.group(1) + _typo_text(a.group(3), lang, Q_ATTR) + '"'
+    def seg(m):
+        x = m.group(0)
+        if m.group(1) is not None:                  # <script> : seul le JSON-LD est converti
+            return _typo_text(x, lang, Q_JSON, "\u00a0") if "ld+json" in m.group(1) else x
+        if x.startswith("<style"):
+            return x
+        if x.startswith("<"):                       # balise : valeurs d'attributs lisibles
+            return re.sub(r'(\s([\w:-]+)=")([^"]*)"', attr, x)
+        return _typo_text(x, lang)                  # texte
+    return re.sub(r"<script\b([^>]*)>.*?</script>|<style\b.*?</style>|<[^>]+>|[^<]+", seg, h, flags=re.S)
 
 def write(path, content):
     if content.startswith("<!DOCTYPE html>"):
-        content = apos(content)
+        content = typo_html(content)
     fp = os.path.join(OUT, path.lstrip("/"))
     if fp.endswith("/"):
         fp += "index.html"
