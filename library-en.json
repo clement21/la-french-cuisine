@@ -1,7 +1,7 @@
 {
 "h1":"Library",
 "intro":"Reference books on French cooking, summarised and laid out for reading: traditions, recipes, techniques and tips. Each page draws on a book named at the foot of the page.",
-"meta":["Library: reference books | The French Cuisine","Summaries of reference books on French cooking: Savoyard gastronomy, Lyonnaise cuisine, and practical kitchen tips and tricks."],
+"meta":["Library: reference books | The Village Table","Summaries of reference books on French cooking: Savoyard gastronomy, Lyonnaise cuisine, and practical kitchen tips and tricks."],
 "nav":"Library",
 "items":[
 {"id":"savoie","doc":"La cuisine savoyarde","slug":"savoyard-cuisine","title":"Savoyard cuisine","sub":"Three traditions, from peasant soups to mountain game, and over a hundred preparations sorted by family.",

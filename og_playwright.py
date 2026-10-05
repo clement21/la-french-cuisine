@@ -2,7 +2,7 @@
 # Alternative à og.js quand puppeteer n est pas installé. À lancer APRÈS build_site.py (qui vide le dossier site/).
 import sys, os
 from playwright.sync_api import sync_playwright
-cards={'en':['The French Cuisine','Village cooking, terroir and six-ingredient recipes'],'fr':['The French Cuisine','Cuisine de village, terroirs et recettes en six ingrédients']}
+cards={'en':['The Village Table','Village cooking, terroir and six-ingredient recipes'],'fr':['The Village Table','Cuisine de village, terroirs et recettes en six ingrédients']}
 root=sys.argv[1]
 with sync_playwright() as p:
     b=p.chromium.launch(args=['--no-sandbox'])
