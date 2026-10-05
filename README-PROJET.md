@@ -1,4 +1,4 @@
-# Projet « La Cuisine Française / The French Cuisine » : état au 5 octobre 2026
+# Projet « The French Cuisine » : état au 5 octobre 2026
 
 Blog bilingue (FR/EN) sur l'évolution de la gastronomie française, la sauvegarde des goûts de terroir, le retour de la cuisine de village et des recettes modernisées en 6 ingrédients maximum. Textes écrits pour le podcast **Polische**.
 
@@ -13,7 +13,7 @@ Blog bilingue (FR/EN) sur l'évolution de la gastronomie française, la sauvegar
 
 ## Décisions prises
 
-- Noms : « The French Cuisine » (EN) et « La Cuisine Française » (FR). Nom très générique : risque de référencement et de marque signalé.
+- Nom : « The French Cuisine », identique en français et en anglais (décision du 5 octobre 2026, remplace « La Cuisine Française » côté FR). Nom très générique : risque de référencement et de marque signalé.
 - Règle des 6 ingrédients : tout compte (sel, poivre, huile, beurre, vin, cidre) sauf l'eau.
 - Pas de cookie, pas d'outil de mesure d'audience à ce stade (à mettre à jour dans la FAQ et les mentions légales si une mesure d'audience est ajoutée).
 - Un nouveau document « texte » ajouté au projet devient une page de la Bibliothèque (une page par texte), en FR et EN.

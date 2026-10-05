@@ -56,7 +56,7 @@ L = {
    foot_site="Site information", foot_p="Taste, terroir and the village kitchen. Written for the Polische podcast on the evolution of gastronomy.",
    foot_links=[("faq", "FAQ"), ("legal", "Legal notice"), ("sources", "Sources")],
    lib_jump="Jump to a section", lib_source="Source", lib_from="Summary of", lib_row_lead="Reference books, summarised: ", lib_sources_h="Library"),
- "fr": dict(lang="fr", locale="fr_FR", brand="La Cuisine Française", menu="Menu", skip="Aller au contenu",
+ "fr": dict(lang="fr", locale="fr_FR", brand="The French Cuisine", menu="Menu", skip="Aller au contenu",
    nav={"manifesto": "Manifeste", "history": "Histoire", "essay": "Essai", "terroirs": "Terroirs", "recipes": "Recettes", "library": "Bibliothèque", "village": "Mon village"},
    home="Accueil", crumb="Fil d'Ariane", main_nav="Menu principal", other="English", theme_to_dark="Blanc sur noir",
    prev="Précédent", next="Suivant", more="Autres recettes", count="%d ingrédients sur 6",
@@ -92,16 +92,16 @@ META = {
   "r_tart": ("Thin apple tart (tarte fine): a 5-ingredient recipe", "Tarte fine aux pommes with one sheet of pastry and five ingredients. Serves 2 to 6, step-by-step method."),
  },
  "fr": {
-  "home": ("La Cuisine Française : recettes de village en 6 ingrédients", "Suivez l'histoire de la gastronomie française, défendez les goûts régionaux et cuisinez des recettes de village modernisées en six ingrédients au maximum."),
-  "manifesto": ("Manifeste pour la cuisine de village | La Cuisine Française", "Cinq engagements pour ramener la cuisine de village : saison, goûts menacés, recettes courtes, producteurs visibles et transmission."),
+  "home": ("The French Cuisine : recettes de village en 6 ingrédients", "Suivez l'histoire de la gastronomie française, défendez les goûts régionaux et cuisinez des recettes de village modernisées en six ingrédients au maximum."),
+  "manifesto": ("Manifeste pour la cuisine de village | The French Cuisine", "Cinq engagements pour ramener la cuisine de village : saison, goûts menacés, recettes courtes, producteurs visibles et transmission."),
   "history": ("Histoire de la gastronomie française, de La Varenne à l'UNESCO", "Neuf moments qui ont façonné la cuisine française : La Varenne, Carême, Escoffier, Michelin, appellations, nouvelle cuisine, bistronomie, UNESCO."),
   "essay": ("Pourquoi sauver le goût des terroirs français : un essai", "Un essai en quatre chapitres sur les cuisines de village, le grand détour de la haute cuisine, les goûts qui disparaissent et la cuisine en six ingrédients."),
   "terroirs": ("Cuisine de terroir : 8 régions et leurs goûts à défendre", "Bretagne, Normandie, Alsace, Bourgogne, Lyon, Provence, Sud-Ouest et Auvergne : les goûts régionaux à protéger et les habitudes qui les font vivre."),
   "recipes": ("Recettes de village en 6 ingrédients au maximum", "Six classiques de village en six ingrédients maximum : gratin dauphinois, salade lyonnaise, soupe à l'oignon, moules, poulet au cidre et tarte fine."),
-  "village": ("Ajoutez le plat de votre village | La Cuisine Française", "Notez un plat ou un produit de votre village qui mérite d'être cuisiné à nouveau. Votre liste reste sur votre appareil."),
+  "village": ("Ajoutez le plat de votre village | The French Cuisine", "Notez un plat ou un produit de votre village qui mérite d'être cuisiné à nouveau. Votre liste reste sur votre appareil."),
   "faq": ("FAQ : recettes en six ingrédients, allergies et données", "Réponses sur la règle des six ingrédients, les quantités, les allergies, les cookies, les textes du podcast Polische et la réutilisation des contenus."),
-  "legal": ("Mentions légales | La Cuisine Française", "Éditeur, hébergeur, propriété intellectuelle, données personnelles et cookies de La Cuisine Française."),
-  "sources": ("Sources et références | La Cuisine Française", "Les références derrière les dates et faits de La Cuisine Française : UNESCO, INAO, Michelin, Curnonsky et plus."),
+  "legal": ("Mentions légales | The French Cuisine", "Éditeur, hébergeur, propriété intellectuelle, données personnelles et cookies du site The French Cuisine."),
+  "sources": ("Sources et références | The French Cuisine", "Les références derrière les dates et faits cités sur The French Cuisine : UNESCO, INAO, Michelin, Curnonsky et plus."),
   "r_gratin": ("Gratin dauphinois : recette en 6 ingrédients", "Un gratin dauphinois sans fromage et sans beurre. Six ingrédients, pour 2 à 6 personnes, pas à pas."),
   "r_lyonnaise": ("Salade lyonnaise : recette en 6 ingrédients", "Le classique du bouchon, où la graisse des lardons tient lieu d'huile. Six ingrédients, pour 2 à 6 personnes."),
   "r_onion-soup": ("Soupe à l'oignon gratinée : recette en 6 ingrédients", "Une soupe à l'oignon sans bouillon cube et sans farine. Six ingrédients, pour 2 à 6 personnes, pas à pas."),
@@ -355,6 +355,10 @@ fb.hidden=false;box.open=window.innerWidth>=700||location.search.length>1;apply(
 })();
 """
 
+def brand_html(lang):
+    """Nom du site ; sur les pages françaises, le nom anglais est balisé lang="en"."""
+    return '<span lang="en">%s</span>' % L[lang]["brand"] if lang == "fr" else L[lang]["brand"]
+
 def header(lang, key, active):
     t, p = L[lang], PATHS[lang]
     other = "fr" if lang == "en" else "en"
@@ -370,7 +374,7 @@ def header(lang, key, active):
             '<div class="menu" id="mainMenu">\n<nav class="nav" aria-label="%s">\n%s</nav>\n'
             '<div class="tools"><a class="theme-btn" href="%s" lang="%s" hreflang="%s">%s</a>'
             '<button class="theme-btn" id="themeBtn" type="button">%s</button></div>\n</div>\n</div></header>') % (
-        p["home"], t["brand"], t["menu"], t["main_nav"], nav, PATHS[other][ok], other, other, t["other"], t["theme_to_dark"])
+        p["home"], brand_html(lang), t["menu"], t["main_nav"], nav, PATHS[other][ok], other, other, t["other"], t["theme_to_dark"])
 
 def footer(lang, key):
     t, p = L[lang], PATHS[lang]
@@ -380,7 +384,7 @@ def footer(lang, key):
         links += '<a href="%s"%s>%s</a>\n' % (p[k], cur, label)
     return ('<footer><div class="wrap foot">\n<div class="foot-id"><a class="foot-brand" href="%s">%s</a><p>%s</p></div>\n'
             '<nav class="foot-links" aria-label="%s">\n%s</nav>\n<p class="copy">&copy; <span id="year">2026</span> %s</p>\n</div></footer>') % (
-        p["home"], t["brand"], t["foot_p"], t["foot_site"], links, t["brand"])
+        p["home"], brand_html(lang), t["foot_p"], t["foot_site"], links, brand_html(lang))
 
 def breadcrumb(lang, trail):
     t = L[lang]
@@ -705,13 +709,13 @@ for lang in ("en", "fr"):
 
 # ---- passerelle racine (x-default)
 gw = ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n'
-      '<title>La Cuisine Française · The French Cuisine</title>\n'
+      '<title>The French Cuisine · Cuisine de village · Village cooking</title>\n'
       '<meta name="description" content="French village cooking, terroir and six-ingredient recipes. Cuisine de village, terroirs et recettes en six ingrédients.">\n'
       '<link rel="canonical" href="%s/">\n<meta name="robots" content="index,follow">\n'
       '<link rel="alternate" hreflang="en" href="%s">\n<link rel="alternate" hreflang="fr" href="%s">\n<link rel="alternate" hreflang="x-default" href="%s/">\n'
-      '<meta property="og:title" content="La Cuisine Française · The French Cuisine">\n<meta property="og:description" content="Cuisine de village, terroirs et recettes en six ingrédients. Village cooking, terroir and six-ingredient recipes.">\n<meta property="og:type" content="website">\n<meta property="og:url" content="%s/">\n'
+      '<meta property="og:title" content="The French Cuisine">\n<meta property="og:description" content="Cuisine de village, terroirs et recettes en six ingrédients. Village cooking, terroir and six-ingredient recipes.">\n<meta property="og:type" content="website">\n<meta property="og:url" content="%s/">\n'
       '<meta property="og:image" content="%s">\n<meta name="twitter:card" content="summary_large_image">\n'
-      '<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/assets/style.css">\n</head>\n<body>\n<main class="gateway">\n<h1>La Cuisine Française<br>The French Cuisine</h1>\n'
+      '<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/assets/style.css">\n</head>\n<body>\n<main class="gateway">\n<h1>The French Cuisine</h1>\n'
       '<p>Cuisine de village, terroirs et recettes en six ingrédients.<br>Village cooking, terroir and six-ingredient recipes.</p>\n'
       '<div class="links"><a class="btn" href="/fr/" hreflang="fr" lang="fr">Lire en français</a><a class="btn ghost" href="/en/" hreflang="en" lang="en">Read in English</a></div>\n'
       '<div class="intro">\n<p lang="fr">La cuisine française est devenue l\'une des plus grandes du monde en s\'éloignant des champs qui l\'avaient fait naître. Ce blog retrace ce voyage, défend les goûts qui s\'effacent et montre que six ingrédients honnêtes suffisent à la ramener à la maison. Chaque recette en compte six au plus, sel, poivre et matière grasse compris. Seule l\'eau ne compte pas.</p>\n'
