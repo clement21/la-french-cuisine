@@ -283,6 +283,8 @@ main:has(.prose,.faq,.essay) .wrap{width:min(46rem,100% - 2.5rem)}
 /* Histoire : la frise (dates 8,5 rem + texte 42 rem + marges) tient dans 54 rem, centrée elle aussi */
 main:has(.timeline) .wrap{width:min(54rem,100% - 2.5rem)}
 sup{font-size:.7em;line-height:0;vertical-align:.4em}
+/* Siècles en petites capitales (usage de l'Imprimerie nationale) ; le texte reste en majuscules dans le code */
+.siecle{font-variant-caps:all-small-caps;letter-spacing:.04em}
 .essay{max-width:none}
 """)
 CSS = min_css(BASE_CSS) + EXTRA_CSS
@@ -479,7 +481,7 @@ def page_html(lang, key, body, active=None, trail=None, noindex=False, extra_ld=
 # - guillemets droits : “ ” sur les pages anglaises, « » avec espaces insécables sur les pages françaises ;
 # - intervalles d'années : 1980-1981 devient 1980–1981 (tiret demi-cadratin) ;
 # - espace insécable entre un nombre et son unité (250 g, 46 cl, 1 h) ;
-# - français : espace insécable avant ; : ! ? » et après « ; siècles en exposant (XIXᵉ) dans le corps de page.
+# - français : espace insécable avant ; : ! ? » et après « ; siècles en petites capitales et exposant (XIXᵉ) dans le corps de page.
 APOS = re.compile(r"(?<=[^\W\d_])(?:'|&#x27;|&#39;)")
 APOS_SKIP = ("href", "src", "class", "id", "style", "rel", "type", "lang", "hreflang")
 Q_TEXT, Q_ATTR, Q_JSON = re.compile(r'"|&quot;|&#34;'), re.compile(r'&quot;|&#34;'), re.compile(r'\\"')
@@ -510,7 +512,7 @@ def _typo_text(s, lang, pat=Q_TEXT, nbsp="&nbsp;", body=False):
     if lang == "fr":
         s = FR_AFTER.sub("«" + nbsp, FR_BEFORE.sub(nbsp, s))
         if body:
-            s = CENTURY.sub(r"\1<sup>e</sup>", s)
+            s = CENTURY.sub(r'<span class="siecle">\1</span><sup>e</sup>', s)
     return s
 
 def typo_html(h):
