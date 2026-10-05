@@ -74,7 +74,7 @@ L = {
 
 META = {
  "en": {
-  "home": ("The Village Table: village cooking and 6-ingredient recipes", "Follow the story of French gastronomy, defend regional tastes and cook modern village recipes with six ingredients or fewer."),
+  "home": ("The Village Table: French terroir and 6-ingredient recipes", "Follow the story of French gastronomy, defend regional tastes and cook modern village recipes with six ingredients or fewer."),
   "manifesto": ("A manifesto for French village cooking | The Village Table", "Five promises to bring the village kitchen back: seasonal cooking, endangered tastes, short recipes, visible producers and cooking passed on."),
   "history": ("History of French gastronomy, from La Varenne to UNESCO", "Nine moments that shaped French cooking: La Varenne, Carême, Escoffier, Michelin, appellations, nouvelle cuisine, bistronomy and UNESCO."),
   "essay": ("Why French regional taste is worth saving: an essay", "An essay in four chapters on village kitchens, the grand detour of haute cuisine, vanishing tastes and the case for six-ingredient cooking."),
@@ -709,7 +709,7 @@ for lang in ("en", "fr"):
 
 # ---- passerelle racine (x-default)
 gw = ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n'
-      '<title>The Village Table · Cuisine de village · Village cooking</title>\n'
+      '<title>The Village Table · Terroirs et recettes · Terroir and recipes</title>\n'
       '<meta name="description" content="French village cooking, terroir and six-ingredient recipes. Cuisine de village, terroirs et recettes en six ingrédients.">\n'
       '<link rel="canonical" href="%s/">\n<meta name="robots" content="index,follow">\n'
       '<link rel="alternate" hreflang="en" href="%s">\n<link rel="alternate" hreflang="fr" href="%s">\n<link rel="alternate" hreflang="x-default" href="%s/">\n'
