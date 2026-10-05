@@ -277,6 +277,10 @@ div.wrap:has(>.breadcrumb)+section,div.wrap:has(>.breadcrumb)+article>section{pa
 .lib ul.plain{padding-left:1.1rem}
 .lib ul.plain li{margin-bottom:.9rem}
 .lib-source{margin-top:2.2rem;color:var(--ink-soft);font-size:.95rem;max-width:46rem}
+/* Pages de lecture (FAQ, essai, sources, mentions, fiches de la Bibliothèque) : tout le contenu
+   tient dans une colonne centrée à la largeur de lecture. Les pages en grille gardent la pleine largeur. */
+main:has(.prose,.faq,.essay) .wrap{width:min(46rem,100% - 2.5rem)}
+.essay{max-width:none}
 """)
 CSS = min_css(BASE_CSS) + EXTRA_CSS
 
