@@ -282,6 +282,7 @@ div.wrap:has(>.breadcrumb)+section,div.wrap:has(>.breadcrumb)+article>section{pa
 main:has(.prose,.faq,.essay) .wrap{width:min(46rem,100% - 2.5rem)}
 /* Histoire : la frise (dates 8,5 rem + texte 42 rem + marges) tient dans 54 rem, centrée elle aussi */
 main:has(.timeline) .wrap{width:min(54rem,100% - 2.5rem)}
+sup{font-size:.7em;line-height:0;vertical-align:.4em}
 .essay{max-width:none}
 """)
 CSS = min_css(BASE_CSS) + EXTRA_CSS
@@ -475,7 +476,10 @@ def page_html(lang, key, body, active=None, trail=None, noindex=False, extra_ld=
 # Typographie à l'écriture des pages HTML, sur le texte, les attributs lisibles et le JSON-LD
 # (jamais sur le CSS, le JS ni les URL) :
 # - apostrophe : ' (ou &#x27; produit par esc) après une lettre devient ’ ;
-# - guillemets droits : “ ” sur les pages anglaises, « » avec espaces insécables sur les pages françaises.
+# - guillemets droits : “ ” sur les pages anglaises, « » avec espaces insécables sur les pages françaises ;
+# - intervalles d'années : 1980-1981 devient 1980–1981 (tiret demi-cadratin) ;
+# - espace insécable entre un nombre et son unité (250 g, 46 cl, 1 h) ;
+# - français : espace insécable avant ; : ! ? » et après « ; siècles en exposant (XIXᵉ) dans le corps de page.
 APOS = re.compile(r"(?<=[^\W\d_])(?:'|&#x27;|&#39;)")
 APOS_SKIP = ("href", "src", "class", "id", "style", "rel", "type", "lang", "hreflang")
 Q_TEXT, Q_ATTR, Q_JSON = re.compile(r'"|&quot;|&#34;'), re.compile(r'&quot;|&#34;'), re.compile(r'\\"')
@@ -493,11 +497,25 @@ def _quotes(s, lang, pat, nbsp):
         return "“" if opening else "”"
     return pat.sub(rep, s)
 
-def _typo_text(s, lang, pat=Q_TEXT, nbsp="&nbsp;"):
-    return _quotes(APOS.sub("’", s), lang, pat, nbsp)
+YEARS = re.compile(r"(?<![\d-])(1\d{3}|20\d{2})-(1\d{3}|20\d{2})(?![\d-])")
+UNIT = re.compile(r"(\d) (?=(?:g|kg|ml|cl|dl|cm|mm|min|h|°C)(?![\w’'-]))")
+FR_BEFORE = re.compile(r"(?<=[^\s(]) (?=[;:!?»])")
+FR_AFTER = re.compile(r"« ")
+CENTURY = re.compile(r"\b([IVX]{2,})e\b")
+
+def _typo_text(s, lang, pat=Q_TEXT, nbsp="&nbsp;", body=False):
+    s = _quotes(APOS.sub("’", s), lang, pat, nbsp)
+    s = YEARS.sub("\\1–\\2", s)
+    s = UNIT.sub("\\1" + nbsp, s)
+    if lang == "fr":
+        s = FR_AFTER.sub("«" + nbsp, FR_BEFORE.sub(nbsp, s))
+        if body:
+            s = CENTURY.sub(r"\1<sup>e</sup>", s)
+    return s
 
 def typo_html(h):
     lang = (re.search(r'<html lang="(\w+)"', h) or [None, "en"])[1]
+    body_at = h.find("<body")
     def attr(a):
         if a.group(2) in APOS_SKIP or a.group(2).startswith("on"):
             return a.group(0)
@@ -510,7 +528,7 @@ def typo_html(h):
             return x
         if x.startswith("<"):                       # balise : valeurs d'attributs lisibles
             return re.sub(r'(\s([\w:-]+)=")([^"]*)"', attr, x)
-        return _typo_text(x, lang)                  # texte
+        return _typo_text(x, lang, body=m.start() > body_at)   # texte
     return re.sub(r"<script\b([^>]*)>.*?</script>|<style\b.*?</style>|<[^>]+>|[^<]+", seg, h, flags=re.S)
 
 def write(path, content):

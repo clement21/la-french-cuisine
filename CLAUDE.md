@@ -24,7 +24,7 @@ python3 seo_check.py site                        # doit afficher 0 erreur
 Quand un texte est ajouté dans `sources/` (ou collé dans la conversation), créer **une page**, en français et en anglais :
 1. Ajouter un objet dans `items` de `library-fr.json` ET `library-en.json`, avec le **même `id`** et les **mêmes blocs dans le même ordre** : `id`, `doc` (nom du texte), `slug` (propre à chaque langue), `title`, `sub`, `meta` [titre SEO, description], `source` (auteur, titre, éditeur, année), `blocks`.
 2. Blocs : `{"t":"h2","x":""}`, `{"t":"h3","x":""}`, `{"t":"p","x":""}`, `{"t":"list","items":[""]}`, `{"t":"dishes","items":[["Nom","description"]]}`. HTML autorisé : `<em>`, `<strong>`. Pas de Markdown.
-3. Reprendre fidèlement le contenu (rien d'inventé), corriger les fautes de frappe. Les espaces insécables françaises sont ajoutées par le générateur : ne pas les saisir. De même, l'apostrophe droite ' est convertie en ’ et les guillemets droits " en “ ” (EN) ou « » (FR) à la génération : saisir les caractères du clavier.
+3. Reprendre fidèlement le contenu (rien d'inventé), corriger les fautes de frappe. Les espaces insécables françaises sont ajoutées par le générateur : ne pas les saisir. De même, la passe `typo_html()` du générateur convertit l'apostrophe ' en ’, les guillemets " en “ ” (EN) ou « » (FR), les intervalles d'années 1980-1981 en 1980–1981, met une insécable entre nombre et unité (250 g) et, en français, les siècles en exposant (XIXe → XIXᵉ) : saisir les caractères du clavier. En anglais, garder « 200°C » et « 17th » (usage britannique).
 4. Reconstruire, auditer (0 erreur), puis committer.
 
 ## Règles éditoriales
