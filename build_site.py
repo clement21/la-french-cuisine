@@ -270,6 +270,7 @@ div.wrap:has(>.breadcrumb)+section,div.wrap:has(>.breadcrumb)+article>section{pa
 .gateway h1{font-size:clamp(2rem,6vw,3.6rem)}
 .gateway .links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .gateway a.btn{min-width:11rem;text-align:center}
+.gateway .intro{max-width:38rem;margin:0 auto;display:grid;gap:1rem;text-align:left}
 .lib h2{scroll-margin-top:90px}
 .lib h3{font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:1.8rem 0 .7rem}
 .lib .src{margin-bottom:1.4rem}
@@ -688,6 +689,8 @@ gw = ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta 
       '<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/assets/style.css">\n</head>\n<body>\n<main class="gateway">\n<h1>La Cuisine Française<br>The French Cuisine</h1>\n'
       '<p>Cuisine de village, terroirs et recettes en six ingrédients.<br>Village cooking, terroir and six-ingredient recipes.</p>\n'
       '<div class="links"><a class="btn" href="/fr/" hreflang="fr" lang="fr">Lire en français</a><a class="btn ghost" href="/en/" hreflang="en" lang="en">Read in English</a></div>\n'
+      '<div class="intro">\n<p lang="fr">La cuisine française est devenue l\'une des plus grandes du monde en s\'éloignant des champs qui l\'avaient fait naître. Ce blog retrace ce voyage, défend les goûts qui s\'effacent et montre que six ingrédients honnêtes suffisent à la ramener à la maison. Chaque recette en compte six au plus, sel, poivre et matière grasse compris. Seule l\'eau ne compte pas.</p>\n'
+      '<p lang="en">French cooking became one of the great cuisines of the world by travelling far from the fields that made it. This blog follows that journey, defends the tastes we are losing, and shows that six honest ingredients can bring it home. Every recipe uses six at most, salt, pepper and fat included. Only water does not count.</p>\n</div>\n'
       '</main>\n</body>\n</html>\n') % (SITE_URL, url("/en/"), url("/fr/"), SITE_URL, SITE_URL, url("/assets/og-en.png"))
 write("/", tidy(gw))
 
