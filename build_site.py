@@ -42,7 +42,7 @@ for l in PATHS:
         PATHS[l]["lib_" + it["id"]] = PATHS[l]["library"] + it["slug"] + "/"
 
 L = {
- "en": dict(lang="en", locale="en_GB", brand="The French Cuisine", menu="Menu", skip="Skip to content",
+ "en": dict(lang="en", locale="en_GB", brand="Table's Town", menu="Menu", skip="Skip to content",
    nav={"manifesto": "Manifesto", "history": "History", "essay": "Essay", "terroirs": "Terroirs", "recipes": "Recipes", "library": "Library", "village": "Your village"},
    home="Home", crumb="Breadcrumb", main_nav="Main menu", other="Français", theme_to_dark="White on black",
    prev="Previous", next="Next", more="More recipes", count="%d of 6 ingredients",
@@ -56,7 +56,7 @@ L = {
    foot_site="Site information", foot_p="Taste, terroir and the village kitchen. Written for the Polische podcast on the evolution of gastronomy.",
    foot_links=[("faq", "FAQ"), ("legal", "Legal notice"), ("sources", "Sources")],
    lib_jump="Jump to a section", lib_source="Source", lib_from="Summary of", lib_row_lead="Reference books, summarised: ", lib_sources_h="Library"),
- "fr": dict(lang="fr", locale="fr_FR", brand="La Cuisine Française", menu="Menu", skip="Aller au contenu",
+ "fr": dict(lang="fr", locale="fr_FR", brand="Table's Town", menu="Menu", skip="Aller au contenu",
    nav={"manifesto": "Manifeste", "history": "Histoire", "essay": "Essai", "terroirs": "Terroirs", "recipes": "Recettes", "library": "Bibliothèque", "village": "Mon village"},
    home="Accueil", crumb="Fil d'Ariane", main_nav="Menu principal", other="English", theme_to_dark="Blanc sur noir",
    prev="Précédent", next="Suivant", more="Autres recettes", count="%d ingrédients sur 6",
@@ -74,16 +74,16 @@ L = {
 
 META = {
  "en": {
-  "home": ("The French Cuisine: village cooking and 6-ingredient recipes", "Follow the story of French gastronomy, defend regional tastes and cook modern village recipes with six ingredients or fewer."),
-  "manifesto": ("A manifesto for French village cooking | The French Cuisine", "Five promises to bring the village kitchen back: seasonal cooking, endangered tastes, short recipes, visible producers and cooking passed on."),
+  "home": ("Table's Town: village cooking and 6-ingredient recipes", "Follow the story of French gastronomy, defend regional tastes and cook modern village recipes with six ingredients or fewer."),
+  "manifesto": ("A manifesto for French village cooking | Table's Town", "Five promises to bring the village kitchen back: seasonal cooking, endangered tastes, short recipes, visible producers and cooking passed on."),
   "history": ("History of French gastronomy, from La Varenne to UNESCO", "Nine moments that shaped French cooking: La Varenne, Carême, Escoffier, Michelin, appellations, nouvelle cuisine, bistronomy and UNESCO."),
   "essay": ("Why French regional taste is worth saving: an essay", "An essay in four chapters on village kitchens, the grand detour of haute cuisine, vanishing tastes and the case for six-ingredient cooking."),
   "terroirs": ("French regional cuisine: 8 terroirs and the tastes to defend", "Brittany, Normandy, Alsace, Burgundy, Lyon, Provence, the Southwest and Auvergne: the regional tastes worth protecting and the habits that keep them alive."),
   "recipes": ("French village recipes with 6 ingredients or fewer", "Six classic French village dishes in six ingredients or fewer: gratin dauphinois, Lyonnaise salad, onion soup, mussels, cider chicken and apple tart."),
-  "village": ("Add the dish of your village | The French Cuisine", "Write down one dish or product from your village that deserves to be cooked again. Your list stays on your own device."),
+  "village": ("Add the dish of your village | Table's Town", "Write down one dish or product from your village that deserves to be cooked again. Your list stays on your own device."),
   "faq": ("FAQ: six-ingredient recipes, allergies and your data", "Answers about the six-ingredient rule, quantities, allergies, cookies, the Polische podcast texts and reusing content."),
-  "legal": ("Legal notice | The French Cuisine", "Publisher, host, intellectual property, personal data and cookies for The French Cuisine."),
-  "sources": ("Sources and references | The French Cuisine", "The references behind the dates and facts on The French Cuisine: UNESCO, INAO, Michelin, Curnonsky and more."),
+  "legal": ("Legal notice | Table's Town", "Publisher, host, intellectual property, personal data and cookies for Table's Town."),
+  "sources": ("Sources and references | Table's Town", "The references behind the dates and facts on Table's Town: UNESCO, INAO, Michelin, Curnonsky and more."),
   "r_gratin": ("Potato gratin dauphinois: a 6-ingredient recipe", "A gratin dauphinois without cheese or butter. Six ingredients, serves 2 to 6, step-by-step method."),
   "r_lyonnaise": ("Lyonnaise salad recipe with 6 ingredients", "The bouchon classic, where bacon fat replaces the oil. Six ingredients, serves 2 to 6, step-by-step method."),
   "r_onion-soup": ("French onion soup (gratinée): a 6-ingredient recipe", "Onion soup without stock cubes or flour. Six ingredients, serves 2 to 6, step-by-step method."),
@@ -92,16 +92,16 @@ META = {
   "r_tart": ("Thin apple tart (tarte fine): a 5-ingredient recipe", "Tarte fine aux pommes with one sheet of pastry and five ingredients. Serves 2 to 6, step-by-step method."),
  },
  "fr": {
-  "home": ("La Cuisine Française : recettes de village en 6 ingrédients", "Suivez l'histoire de la gastronomie française, défendez les goûts régionaux et cuisinez des recettes de village modernisées en six ingrédients au maximum."),
-  "manifesto": ("Manifeste pour la cuisine de village | La Cuisine Française", "Cinq engagements pour ramener la cuisine de village : saison, goûts menacés, recettes courtes, producteurs visibles et transmission."),
+  "home": ("Table's Town : recettes de village en 6 ingrédients", "Suivez l'histoire de la gastronomie française, défendez les goûts régionaux et cuisinez des recettes de village modernisées en six ingrédients au maximum."),
+  "manifesto": ("Manifeste pour la cuisine de village | Table's Town", "Cinq engagements pour ramener la cuisine de village : saison, goûts menacés, recettes courtes, producteurs visibles et transmission."),
   "history": ("Histoire de la gastronomie française, de La Varenne à l'UNESCO", "Neuf moments qui ont façonné la cuisine française : La Varenne, Carême, Escoffier, Michelin, appellations, nouvelle cuisine, bistronomie, UNESCO."),
   "essay": ("Pourquoi sauver le goût des terroirs français : un essai", "Un essai en quatre chapitres sur les cuisines de village, le grand détour de la haute cuisine, les goûts qui disparaissent et la cuisine en six ingrédients."),
   "terroirs": ("Cuisine de terroir : 8 régions et leurs goûts à défendre", "Bretagne, Normandie, Alsace, Bourgogne, Lyon, Provence, Sud-Ouest et Auvergne : les goûts régionaux à protéger et les habitudes qui les font vivre."),
   "recipes": ("Recettes de village en 6 ingrédients au maximum", "Six classiques de village en six ingrédients maximum : gratin dauphinois, salade lyonnaise, soupe à l'oignon, moules, poulet au cidre et tarte fine."),
-  "village": ("Ajoutez le plat de votre village | La Cuisine Française", "Notez un plat ou un produit de votre village qui mérite d'être cuisiné à nouveau. Votre liste reste sur votre appareil."),
+  "village": ("Ajoutez le plat de votre village | Table's Town", "Notez un plat ou un produit de votre village qui mérite d'être cuisiné à nouveau. Votre liste reste sur votre appareil."),
   "faq": ("FAQ : recettes en six ingrédients, allergies et données", "Réponses sur la règle des six ingrédients, les quantités, les allergies, les cookies, les textes du podcast Polische et la réutilisation des contenus."),
-  "legal": ("Mentions légales | La Cuisine Française", "Éditeur, hébergeur, propriété intellectuelle, données personnelles et cookies de La Cuisine Française."),
-  "sources": ("Sources et références | La Cuisine Française", "Les références derrière les dates et faits de La Cuisine Française : UNESCO, INAO, Michelin, Curnonsky et plus."),
+  "legal": ("Mentions légales | Table's Town", "Éditeur, hébergeur, propriété intellectuelle, données personnelles et cookies de Table's Town."),
+  "sources": ("Sources et références | Table's Town", "Les références derrière les dates et faits de Table's Town : UNESCO, INAO, Michelin, Curnonsky et plus."),
   "r_gratin": ("Gratin dauphinois : recette en 6 ingrédients", "Un gratin dauphinois sans fromage et sans beurre. Six ingrédients, pour 2 à 6 personnes, pas à pas."),
   "r_lyonnaise": ("Salade lyonnaise : recette en 6 ingrédients", "Le classique du bouchon, où la graisse des lardons tient lieu d'huile. Six ingrédients, pour 2 à 6 personnes."),
   "r_onion-soup": ("Soupe à l'oignon gratinée : recette en 6 ingrédients", "Une soupe à l'oignon sans bouillon cube et sans farine. Six ingrédients, pour 2 à 6 personnes, pas à pas."),
@@ -679,13 +679,13 @@ for lang in ("en", "fr"):
 
 # ---- passerelle racine (x-default)
 gw = ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n'
-      '<title>La Cuisine Française · The French Cuisine</title>\n'
+      '<title>Table\'s Town · Cuisine de village, village cooking</title>\n'
       '<meta name="description" content="French village cooking, terroir and six-ingredient recipes. Cuisine de village, terroirs et recettes en six ingrédients.">\n'
       '<link rel="canonical" href="%s/">\n<meta name="robots" content="index,follow">\n'
       '<link rel="alternate" hreflang="en" href="%s">\n<link rel="alternate" hreflang="fr" href="%s">\n<link rel="alternate" hreflang="x-default" href="%s/">\n'
-      '<meta property="og:title" content="La Cuisine Française · The French Cuisine">\n<meta property="og:description" content="Cuisine de village, terroirs et recettes en six ingrédients. Village cooking, terroir and six-ingredient recipes.">\n<meta property="og:type" content="website">\n<meta property="og:url" content="%s/">\n'
+      '<meta property="og:title" content="Table\'s Town">\n<meta property="og:description" content="Cuisine de village, terroirs et recettes en six ingrédients. Village cooking, terroir and six-ingredient recipes.">\n<meta property="og:type" content="website">\n<meta property="og:url" content="%s/">\n'
       '<meta property="og:image" content="%s">\n<meta name="twitter:card" content="summary_large_image">\n'
-      '<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/assets/style.css">\n</head>\n<body>\n<main class="gateway">\n<h1>La Cuisine Française<br>The French Cuisine</h1>\n'
+      '<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/assets/style.css">\n</head>\n<body>\n<main class="gateway">\n<h1>Table\'s Town</h1>\n'
       '<p>Cuisine de village, terroirs et recettes en six ingrédients.<br>Village cooking, terroir and six-ingredient recipes.</p>\n'
       '<div class="links"><a class="btn" href="/fr/" hreflang="fr" lang="fr">Lire en français</a><a class="btn ghost" href="/en/" hreflang="en" lang="en">Read in English</a></div>\n'
       '</main>\n</body>\n</html>\n') % (SITE_URL, url("/en/"), url("/fr/"), SITE_URL, SITE_URL, url("/assets/og-en.png"))

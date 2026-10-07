@@ -1,4 +1,4 @@
-# La Cuisine Française / The French Cuisine : site statique bilingue
+# Table's Town : site statique bilingue
 
 Langue de travail : **français** (réponses, commentaires, messages de commit). Prose publiable, sans fautes, vocabulaire de cuisine et de terroir précis.
 
@@ -29,7 +29,7 @@ Quand un texte est ajouté dans `sources/` (ou collé dans la conversation), cr�
 
 ## Règles éditoriales
 - Règle des 6 ingrédients : tout compte (sel, poivre, huile, beurre, vin, cidre) sauf l'eau.
-- Noms : « La Cuisine Française » (FR), « The French Cuisine » (EN).
+- Nom : « Table's Town », identique en FR et en EN (ne pas le traduire). Anciens noms abandonnés : « La Cuisine Française », « The French Cuisine ».
 - Pas de cookie ni de mesure d'audience (si ajout : mettre à jour la FAQ et les mentions légales).
 - Les résumés d'ouvrages sont sous droit d'auteur : toujours citer la source en bas de page et sur la page Sources.
 - Les recettes ne sont pas testées : ne pas affirmer le contraire.

@@ -8,8 +8,8 @@ try { puppeteer = require('puppeteer'); } catch (e) { puppeteer = require(proces
   const opts = { args: ['--no-sandbox'], headless: true };
   if (process.env.CHROME_PATH) opts.executablePath = process.env.CHROME_PATH;
   const b = await puppeteer.launch(opts);
-  const cards = { en: ['The French Cuisine', 'Village cooking, terroir and six-ingredient recipes'],
-                  fr: ['La Cuisine Française', 'Cuisine de village, terroirs et recettes en six ingrédients'] };
+  const cards = { en: ["Table's Town", 'Village cooking, terroir and six-ingredient recipes'],
+                  fr: ["Table's Town", 'Cuisine de village, terroirs et recettes en six ingrédients'] };
   for (const l of ['en', 'fr']) {
     const p = await b.newPage(); await p.setViewport({ width: 1200, height: 630 });
     await p.setContent(`<html><body style="margin:0;background:#fff;color:#0a0a0a;font-family:Georgia,'Times New Roman',serif;display:flex;flex-direction:column;justify-content:center;height:630px;padding:0 90px;box-sizing:border-box;border-left:18px solid #4F6F47">
