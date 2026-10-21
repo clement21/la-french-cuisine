@@ -22,12 +22,14 @@ const CONFIG = {
   // Récapitulatif hebdomadaire : destinataires séparés par des virgules.
   // Vide = l'adresse du compte qui a installé le script.
   EMAILS_RECAP: '',
-  // Heure (0-23) d'envoi le lundi. Google envoie dans l'heure qui suit (8 = entre 8 h et 9 h).
+  // Heure (0-23) d'envoi, le lundi et le 1er du mois. Google envoie dans l'heure qui suit (8 = entre 8 h et 9 h).
   HEURE_RECAP: 8,
   // Envoyer aussi l'e-mail quand aucune casse n'a été déclarée dans la semaine.
   RECAP_SI_AUCUNE_CASSE: true,
   // Nombre maximal de photos affichées dans l'e-mail (les suivantes en simple lien).
   PHOTOS_DANS_RECAP: 12,
+  // Récapitulatif mensuel : nombre de mois affichés dans le tableau « Évolution ».
+  MOIS_HISTORIQUE: 6,
 };
 
 const ENTETES_REGISTRE = [
@@ -282,7 +284,7 @@ function agreger_(entrees) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Récapitulatif du lundi par e-mail                                   */
+/* Récapitulatifs par e-mail (informatifs) : chaque lundi, chaque 1er  */
 /* ------------------------------------------------------------------ */
 
 /** À lancer une fois depuis l'éditeur : programme l'envoi chaque lundi matin. */
@@ -293,18 +295,38 @@ function installerRecapLundi() {
     .onWeekDay(ScriptApp.WeekDay.MONDAY)
     .atHour(CONFIG.HEURE_RECAP)
     .create();
-  Logger.log('Récapitulatif programmé chaque lundi vers ' + CONFIG.HEURE_RECAP + ' h, pour : ' + destinataires_());
+  Logger.log('Récapitulatif hebdomadaire programmé chaque lundi vers ' + CONFIG.HEURE_RECAP + ' h, pour : ' + destinataires_());
 }
 
 /** Arrête l'envoi automatique du lundi. */
 function supprimerRecapLundi() {
+  supprimerDeclencheurs_('envoyerRecapHebdo');
+}
+
+/** À lancer une fois depuis l'éditeur : programme l'envoi le 1er de chaque mois. */
+function installerRecapMensuel() {
+  supprimerRecapMensuel();
+  ScriptApp.newTrigger('envoyerRecapMensuel')
+    .timeBased()
+    .onMonthDay(1)
+    .atHour(CONFIG.HEURE_RECAP)
+    .create();
+  Logger.log('Récapitulatif mensuel programmé le 1er de chaque mois vers ' + CONFIG.HEURE_RECAP + ' h, pour : ' + destinataires_());
+}
+
+/** Arrête l'envoi automatique du 1er du mois. */
+function supprimerRecapMensuel() {
+  supprimerDeclencheurs_('envoyerRecapMensuel');
+}
+
+function supprimerDeclencheurs_(fonction) {
   ScriptApp.getProjectTriggers()
-    .filter(t => t.getHandlerFunction() === 'envoyerRecapHebdo')
+    .filter(t => t.getHandlerFunction() === fonction)
     .forEach(t => ScriptApp.deleteTrigger(t));
 }
 
 /**
- * Envoie le bilan de la semaine écoulée (du lundi 0 h au dimanche 24 h).
+ * Bilan de la semaine écoulée (du lundi 0 h au dimanche 24 h).
  * Appelée automatiquement le lundi ; peut aussi être lancée à la main pour essayer.
  */
 function envoyerRecapHebdo() {
@@ -312,47 +334,106 @@ function envoyerRecapHebdo() {
   const jour = 24 * 3600 * 1000;
 
   // Lundi de la semaine en cours, à minuit (heure du script).
-  const lundi = new Date(Utilities.formatDate(new Date(), fuseau, "yyyy-MM-dd'T'00:00:00"));
+  const lundi = minuit_(new Date(), fuseau);
   lundi.setDate(lundi.getDate() - (lundi.getDay() + 6) % 7);
   const debut = new Date(lundi.getTime() - 7 * jour);
-  const debutPrecedente = new Date(lundi.getTime() - 14 * jour);
+  const debutPrecedent = new Date(lundi.getTime() - 14 * jour);
+  const dimanche = new Date(lundi.getTime() - jour);
 
+  envoyerRecap_({
+    titre: 'Casse de la semaine',
+    periode: 'du ' + Utilities.formatDate(debut, fuseau, 'dd/MM') +
+      ' au ' + Utilities.formatDate(dimanche, fuseau, 'dd/MM/yyyy'),
+    cette: 'cette semaine',
+    precedente: 'la semaine précédente',
+    debut, fin: lundi, debutPrecedent,
+    photos: CONFIG.PHOTOS_DANS_RECAP,
+  });
+}
+
+/**
+ * Bilan du mois écoulé, avec répartition midi/soir, par semaine et évolution sur plusieurs mois.
+ * Appelée automatiquement le 1er du mois ; peut aussi être lancée à la main pour essayer.
+ */
+function envoyerRecapMensuel() {
+  const fuseau = Session.getScriptTimeZone();
+  const fin = minuit_(new Date(), fuseau);
+  fin.setDate(1);                                  // 1er du mois en cours
+  const debut = decalerMois_(fin, -1);             // 1er du mois écoulé
+  const debutPrecedent = decalerMois_(fin, -2);
+
+  envoyerRecap_({
+    titre: 'Casse du mois',
+    periode: nomMois_(debut),
+    cette: 'ce mois-ci',
+    precedente: 'le mois précédent',
+    debut, fin, debutPrecedent,
+    photos: 0,
+    mensuel: true,
+  });
+}
+
+/** Construit et envoie un récapitulatif à partir de la description de sa période. */
+function envoyerRecap_(r) {
+  const fuseau = Session.getScriptTimeZone();
   const registre = lireRegistre_();
   const dans = (e, a, b) => e.date >= a && e.date < b;
-  const semaine = registre.filter(e => dans(e, debut, lundi)).sort((a, b) => a.date - b.date);
-  const precedente = agreger_(registre.filter(e => dans(e, debutPrecedente, debut)));
-  const bilan = agreger_(semaine);
 
-  if (!bilan.declarations && !CONFIG.RECAP_SI_AUCUNE_CASSE) return;
+  r.entrees = registre.filter(e => dans(e, r.debut, r.fin)).sort((a, b) => a.date - b.date);
+  r.bilan = agreger_(r.entrees);
+  r.avant = agreger_(registre.filter(e => dans(e, r.debutPrecedent, r.debut)));
+  if (!r.bilan.declarations && !CONFIG.RECAP_SI_AUCUNE_CASSE) return;
 
-  const dimanche = new Date(lundi.getTime() - jour);
-  const periode = 'du ' + Utilities.formatDate(debut, fuseau, 'dd/MM') +
-    ' au ' + Utilities.formatDate(dimanche, fuseau, 'dd/MM/yyyy');
-  const sujet = bilan.declarations
-    ? 'Casse ' + periode + ' : ' + pluriel_(bilan.pieces, 'pièce') + ', ' + euros_(bilan.cout)
-    : 'Casse ' + periode + ' : aucune casse déclarée';
+  if (r.mensuel) {
+    r.parService = {};
+    r.entrees.forEach(e => ajouter_(r.parService, e.service || 'Non précisé', e.quantite, e.cout));
 
-  // Photos intégrées à l'e-mail (les plus récentes en dernier, limitées en nombre).
+    // Semaines du mois, numérotées par leur lundi.
+    r.parSemaine = [];
+    r.entrees.forEach(e => {
+      const lundi = minuit_(e.date, fuseau);
+      lundi.setDate(lundi.getDate() - (lundi.getDay() + 6) % 7);
+      const cle = 'Semaine du ' + Utilities.formatDate(lundi, fuseau, 'dd/MM');
+      let ligne = r.parSemaine.find(x => x[0] === cle);
+      if (!ligne) r.parSemaine.push(ligne = [cle, { pieces: 0, cout: 0 }]);
+      ligne[1].pieces += e.quantite;
+      ligne[1].cout = Math.round((ligne[1].cout + e.cout) * 100) / 100;
+    });
+
+    // Évolution : les N derniers mois, du plus ancien au mois écoulé.
+    r.evolution = [];
+    for (let k = CONFIG.MOIS_HISTORIQUE - 1; k >= 0; k--) {
+      const a = decalerMois_(r.debut, -k);
+      const b = agreger_(registre.filter(e => dans(e, a, decalerMois_(a, 1))));
+      r.evolution.push([nomMois_(a), { pieces: b.pieces, cout: b.cout }]);
+    }
+  }
+
+  const de = r.mensuel ? (/^[aeiouéh]/i.test(r.periode) ? "d'" : 'de ') : '';
+  r.sujet = 'Casse ' + de + r.periode + ' : ' + (r.bilan.declarations
+    ? pluriel_(r.bilan.pieces, 'pièce') + ', ' + euros_(r.bilan.cout)
+    : 'aucune casse déclarée');
+
+  // Photos intégrées à l'e-mail (dans l'ordre chronologique, limitées en nombre).
   const images = {};
   let nbPhotos = 0;
-  semaine.forEach(e => {
+  r.entrees.forEach(e => {
     const id = /\/d\/([^/]+)/.exec(e.urlPhoto);
-    if (!id || nbPhotos >= CONFIG.PHOTOS_DANS_RECAP) return;
+    if (!id || nbPhotos >= r.photos) return;
     try {
-      e.cid = 'photo' + nbPhotos;
-      images[e.cid] = DriveApp.getFileById(id[1]).getBlob();
-      nbPhotos++;
+      images['photo' + nbPhotos] = DriveApp.getFileById(id[1]).getBlob();
+      e.cid = 'photo' + nbPhotos++;
     } catch (err) {
-      delete e.cid; // photo supprimée entre-temps : on garde le simple lien
+      // Photo supprimée entre-temps : on garde le simple lien.
     }
   });
 
-  const urlClasseur = ressources_().classeur.getUrl();
+  r.urlClasseur = ressources_().classeur.getUrl();
   MailApp.sendEmail({
     to: destinataires_(),
-    subject: sujet,
-    htmlBody: htmlRecap_(periode, bilan, precedente, semaine, urlClasseur, fuseau),
-    body: texteRecap_(periode, bilan, precedente, semaine, urlClasseur, fuseau),
+    subject: r.sujet,
+    htmlBody: htmlRecap_(r, fuseau),
+    body: texteRecap_(r, fuseau),
     inlineImages: images,
     name: 'Suivi de la casse',
   });
@@ -362,13 +443,15 @@ function destinataires_() {
   return CONFIG.EMAILS_RECAP.trim() || Session.getEffectiveUser().getEmail();
 }
 
-/** « +12,50 € de plus que la semaine précédente », etc. */
-function comparaison_(bilan, precedente) {
-  const ecart = Math.round((bilan.cout - precedente.cout) * 100) / 100;
-  if (!precedente.declarations && !bilan.declarations) return '';
-  if (ecart === 0) return 'Même coût que la semaine précédente.';
+/** « 12,50 € de plus que la semaine précédente (3 pièces, 9,00 €). » */
+function comparaison_(r) {
+  const ecart = Math.round((r.bilan.cout - r.avant.cout) * 100) / 100;
+  if (!r.avant.declarations && !r.bilan.declarations) return '';
+  if (!r.avant.declarations) return 'Aucune casse déclarée ' + r.precedente + '.';
+  const rappel = ' (' + pluriel_(r.avant.pieces, 'pièce') + ', ' + euros_(r.avant.cout) + ').';
+  if (ecart === 0) return 'Même coût que ' + r.precedente + rappel;
   return (ecart > 0 ? euros_(ecart) + ' de plus' : euros_(-ecart) + ' de moins') +
-    ' que la semaine précédente (' + pluriel_(precedente.pieces, 'pièce') + ', ' + euros_(precedente.cout) + ').';
+    ' que ' + r.precedente + rappel;
 }
 
 function trier_(table) {
@@ -377,69 +460,113 @@ function trier_(table) {
     .sort((a, b) => b[1].cout - a[1].cout || b[1].pieces - a[1].pieces);
 }
 
-function htmlRecap_(periode, bilan, precedente, semaine, urlClasseur, fuseau) {
+function htmlRecap_(r, fuseau) {
   const h = echapper_;
+  const gris = '#7a6f62';
   const td = 'padding:6px 8px;border-bottom:1px solid #e4dccf;';
-  const titre = t => '<h3 style="margin:22px 0 6px;font-size:15px;color:#7a6f62;text-transform:uppercase;letter-spacing:.04em">' + t + '</h3>';
-  const tableau = table => '<table style="border-collapse:collapse;width:100%;max-width:520px">' +
-    trier_(table).map(([nom, v]) =>
+  const titre = t => '<h3 style="margin:22px 0 6px;font-size:15px;color:' + gris +
+    ';text-transform:uppercase;letter-spacing:.04em">' + t + '</h3>';
+  const tableau = lignes => '<table style="border-collapse:collapse;width:100%;max-width:520px">' +
+    lignes.map(([nom, v]) =>
       '<tr><td style="' + td + '">' + h(nom) + '</td>' +
       '<td style="' + td + 'text-align:right">' + v.pieces + ' pc</td>' +
       '<td style="' + td + 'text-align:right">' + euros_(v.cout) + '</td></tr>').join('') +
     '</table>';
+  const quand = e => jourSemaine_(e.date, fuseau) + ' ' + Utilities.formatDate(e.date, fuseau, 'dd/MM HH:mm');
+  const b = r.bilan;
 
   let html = '<div style="font-family:Arial,Helvetica,sans-serif;color:#2b2620;max-width:620px">' +
-    '<h2 style="color:#8c2f1b;margin:0 0 4px">Casse de la semaine</h2>' +
-    '<p style="margin:0 0 16px;color:#7a6f62">' + h(periode) + '</p>';
+    '<h2 style="color:#8c2f1b;margin:0 0 4px">' + h(r.titre) + '</h2>' +
+    '<p style="margin:0 0 16px;color:' + gris + '">' + h(r.periode) + '</p>';
 
-  if (!bilan.declarations) {
-    html += '<p>Aucune casse n\'a été déclarée cette semaine.</p>' +
-      (precedente.declarations ? '<p style="color:#7a6f62">' + h(comparaison_(bilan, precedente)) + '</p>' : '');
+  if (!b.declarations) {
+    html += '<p>Aucune casse n\'a été déclarée ' + h(r.cette) + '.</p>' +
+      '<p style="color:' + gris + '">' + h(comparaison_(r)) + '</p>';
   } else {
     const chiffre = (n, l) => '<td style="background:#faf6ef;border-radius:8px;padding:10px 14px;text-align:center">' +
-      '<div style="font-size:22px;font-weight:bold">' + n + '</div><div style="font-size:12px;color:#7a6f62">' + l + '</div></td>';
+      '<div style="font-size:22px;font-weight:bold">' + n + '</div><div style="font-size:12px;color:' + gris + '">' + l + '</div></td>';
     html += '<table style="border-collapse:separate;border-spacing:6px 0"><tr>' +
-      chiffre(bilan.declarations, bilan.declarations > 1 ? 'déclarations' : 'déclaration') +
-      chiffre(bilan.pieces, bilan.pieces > 1 ? 'pièces' : 'pièce') + chiffre(euros_(bilan.cout), 'coût') +
+      chiffre(b.declarations, b.declarations > 1 ? 'déclarations' : 'déclaration') +
+      chiffre(b.pieces, b.pieces > 1 ? 'pièces' : 'pièce') + chiffre(euros_(b.cout), 'coût') +
       '</tr></table>' +
-      '<p style="color:#7a6f62">' + h(comparaison_(bilan, precedente)) + '</p>' +
-      titre('Par objet') + tableau(bilan.parObjet) +
-      titre('Par lieu') + tableau(bilan.parLieu) +
-      titre('Par cause') + tableau(bilan.parCause) +
-      titre('Détail');
-    semaine.forEach(e => {
+      '<p style="color:' + gris + '">' + h(comparaison_(r)) + '</p>' +
+      titre('Par objet') + tableau(trier_(b.parObjet)) +
+      titre('Par lieu') + tableau(trier_(b.parLieu)) +
+      titre('Par cause') + tableau(trier_(b.parCause));
+
+    if (r.mensuel) {
+      html += titre('Midi et soir') + tableau(trier_(r.parService)) +
+        titre('Par semaine') + tableau(r.parSemaine);
+    }
+  }
+
+  if (r.mensuel) {
+    html += titre('Évolution sur ' + r.evolution.length + ' mois') + tableau(r.evolution);
+  }
+
+  if (b.declarations && r.mensuel) {
+    // Détail compact : une ligne par casse, photo en lien.
+    html += titre('Détail') + '<table style="border-collapse:collapse;width:100%;font-size:13px">' +
+      r.entrees.map(e => '<tr>' +
+        '<td style="' + td + 'white-space:nowrap;color:' + gris + '">' + h(quand(e)) + '</td>' +
+        '<td style="' + td + '"><strong>' + h(e.objet) + ' x' + e.quantite + '</strong><br>' +
+        h([e.lieu, e.cause, e.declarant].filter(Boolean).join(' · ')) +
+        (e.commentaire ? '<br><em>' + h(e.commentaire) + '</em>' : '') + '</td>' +
+        '<td style="' + td + 'text-align:right;white-space:nowrap">' + euros_(e.cout) +
+        (e.urlPhoto ? '<br><a href="' + h(e.urlPhoto) + '" style="color:#8c2f1b">photo</a>' : '') + '</td>' +
+        '</tr>').join('') + '</table>';
+  } else if (b.declarations) {
+    // Détail hebdomadaire : une fiche par casse, photo intégrée.
+    html += titre('Détail');
+    r.entrees.forEach(e => {
       const infos = [e.lieu, e.cause, e.declarant ? 'déclaré par ' + e.declarant : ''].filter(Boolean).join(' · ');
       html += '<div style="border-top:1px solid #e4dccf;padding:10px 0">' +
         (e.cid ? '<a href="' + h(e.urlPhoto) + '"><img src="cid:' + e.cid + '" width="140" ' +
           'style="float:right;margin-left:10px;border-radius:6px" alt="Photo"></a>' : '') +
         '<strong>' + h(e.objet) + ' x' + e.quantite + '</strong> · ' + euros_(e.cout) + '<br>' +
-        '<span style="color:#7a6f62;font-size:13px">' +
-        h(jourSemaine_(e.date, fuseau) + ' ' + Utilities.formatDate(e.date, fuseau, 'dd/MM HH:mm')) + ' (' + h(e.service) + ') · n° ' + h(e.numero) +
-        '</span><br>' + (infos ? h(infos) + '<br>' : '') +
+        '<span style="color:' + gris + ';font-size:13px">' +
+        h(quand(e)) + ' (' + h(e.service) + ') · n° ' + h(e.numero) + '</span><br>' +
+        (infos ? h(infos) + '<br>' : '') +
         (e.commentaire ? '<em>' + h(e.commentaire) + '</em><br>' : '') +
         (!e.cid && e.urlPhoto ? '<a href="' + h(e.urlPhoto) + '">Voir la photo</a>' : '') +
         '<div style="clear:both"></div></div>';
     });
   }
-  return html + '<p style="margin-top:24px"><a href="' + h(urlClasseur) + '" style="color:#8c2f1b">' +
+
+  return html + '<p style="margin-top:24px"><a href="' + h(r.urlClasseur) + '" style="color:#8c2f1b">' +
     'Ouvrir le registre complet</a></p></div>';
 }
 
 /** Version texte, pour les messageries qui n'affichent pas le HTML. */
-function texteRecap_(periode, bilan, precedente, semaine, urlClasseur, fuseau) {
-  const l = ['CASSE DE LA SEMAINE ' + periode.toUpperCase(), ''];
-  if (!bilan.declarations) {
-    l.push('Aucune casse déclarée cette semaine.');
+function texteRecap_(r, fuseau) {
+  const b = r.bilan;
+  const lignes = (titre, liste) => {
+    l.push('', titre.toUpperCase());
+    liste.forEach(([n, v]) => l.push('- ' + n + ' : ' + v.pieces + ' pc, ' + euros_(v.cout)));
+  };
+  const l = [(r.titre + ' : ' + r.periode).toUpperCase(), ''];
+  if (!b.declarations) {
+    l.push('Aucune casse déclarée ' + r.cette + '.');
+    if (comparaison_(r)) l.push(comparaison_(r));
   } else {
-    l.push(pluriel_(bilan.declarations, 'déclaration') + ', ' + pluriel_(bilan.pieces, 'pièce') + ', ' + euros_(bilan.cout));
-    l.push(comparaison_(bilan, precedente), '', 'PAR OBJET');
-    trier_(bilan.parObjet).forEach(([n, v]) => l.push('- ' + n + ' : ' + v.pieces + ' pc, ' + euros_(v.cout)));
+    l.push(pluriel_(b.declarations, 'déclaration') + ', ' + pluriel_(b.pieces, 'pièce') + ', ' + euros_(b.cout));
+    l.push(comparaison_(r));
+    lignes('Par objet', trier_(b.parObjet));
+    lignes('Par lieu', trier_(b.parLieu));
+    lignes('Par cause', trier_(b.parCause));
+    if (r.mensuel) {
+      lignes('Midi et soir', trier_(r.parService));
+      lignes('Par semaine', r.parSemaine);
+    }
+  }
+  if (r.mensuel) lignes('Évolution sur ' + r.evolution.length + ' mois', r.evolution);
+  if (b.declarations) {
     l.push('', 'DÉTAIL');
-    semaine.forEach(e => l.push('- ' + Utilities.formatDate(e.date, fuseau, 'dd/MM HH:mm') + ' ' +
+    r.entrees.forEach(e => l.push('- ' + Utilities.formatDate(e.date, fuseau, 'dd/MM HH:mm') + ' ' +
       e.objet + ' x' + e.quantite + ' (' + euros_(e.cout) + ') ' +
       [e.lieu, e.cause, e.declarant].filter(Boolean).join(', ') + (e.urlPhoto ? ' ' + e.urlPhoto : '')));
   }
-  l.push('', 'Registre complet : ' + urlClasseur);
+  l.push('', 'Registre complet : ' + r.urlClasseur);
   return l.join('\n');
 }
 
@@ -456,6 +583,22 @@ function ajouter_(table, cle, q, c) {
 
 function euros_(n) {
   return n.toFixed(2).replace('.', ',') + ' €';
+}
+
+/** Minuit du jour de « date », dans le fuseau du script. */
+function minuit_(date, fuseau) {
+  return new Date(Utilities.formatDate(date, fuseau, "yyyy-MM-dd'T'00:00:00"));
+}
+
+/** 1er du mois décalé de « n » mois (date supposée être un 1er du mois). */
+function decalerMois_(date, n) {
+  return new Date(date.getFullYear(), date.getMonth() + n, 1);
+}
+
+function nomMois_(date) {
+  const mois = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet',
+    'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  return mois[date.getMonth()] + ' ' + date.getFullYear();
 }
 
 function pluriel_(n, mot) {

@@ -23,6 +23,9 @@ Mon Drive/
 
 3. L'onglet **Bilan du mois** de l'application affiche le nombre de déclarations, de pièces et le coût, ventilés par objet, par lieu et par cause.
 4. Chaque **lundi matin**, un e-mail récapitule la semaine écoulée, photos comprises.
+5. Le **1er de chaque mois**, un e-mail fait le bilan du mois écoulé.
+
+Ces e-mails sont purement informatifs : aucune alerte, aucun seuil.
 
 Les photos sont réduites à 1 600 pixels sur le téléphone avant l'envoi : l'envoi reste rapide même avec un réseau faible, et Drive ne se remplit pas trop vite (environ 200 à 400 ko par photo).
 
@@ -63,6 +66,18 @@ Mise en route (une fois, après l'installation) :
 3. Choisir la fonction **`installerRecapLundi`** et cliquer sur **Exécuter**. C'est programmé : l'horloge ⏰ « Déclencheurs » du menu de gauche l'affiche.
 
 Pour arrêter : exécuter **`supprimerRecapLundi`**. Après une modification de `EMAILS_RECAP` ou `HEURE_RECAP`, relancer `installerRecapLundi` (inutile de redéployer l'application). L'e-mail part depuis le compte Google qui a installé le script ; un compte gratuit peut envoyer 100 e-mails par jour, bien assez ici.
+
+## Bilan par e-mail le 1er de chaque mois
+
+Le 1er du mois, entre 8 h et 9 h (même réglage `HEURE_RECAP`), un e-mail fait le bilan du mois écoulé :
+
+- objet : `Casse d'octobre 2026 : 9 pièces, 52,00 €` ;
+- totaux comparés au mois précédent ;
+- répartition par objet, par lieu, par cause, **midi / soir** et **par semaine** ;
+- **évolution sur 6 mois** (réglable avec `MOIS_HISTORIQUE`), pour voir la tendance et repérer les mois chargés ;
+- détail compact de chaque casse, avec un lien vers sa photo (pas de photo intégrée : un mois peut en compter beaucoup).
+
+Mise en route : exécuter **`envoyerRecapMensuel`** pour recevoir tout de suite le bilan du mois dernier, puis **`installerRecapMensuel`** pour le programmer. Pour arrêter : **`supprimerRecapMensuel`**. Les deux récapitulatifs sont indépendants : on peut garder l'un sans l'autre.
 
 ## Sécurité
 
