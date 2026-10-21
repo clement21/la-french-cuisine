@@ -163,9 +163,12 @@ function reparerLiensPhotos() {
 /* Catégories d'objets (Sommellerie, Cuisine…)                         */
 /* ------------------------------------------------------------------ */
 
-/** Catégorie proposée pour un objet d'après son nom : la verrerie va en Sommellerie. */
+/**
+ * Catégorie proposée pour un objet d'après son nom : la verrerie, les carafes (vin et eau),
+ * les tasses et les soucoupes vont en Sommellerie ; le reste en Cuisine.
+ */
 function categorieParDefaut_(nom) {
-  return /verre|fl[ûu]te|coupe|tumbler|carafe|d[ée]canteur|pichet|seau|ballon|calice|shooter/i.test(String(nom))
+  return /verre|fl[ûu]te|coupe|tumbler|carafe|d[ée]canteur|pichet|seau|ballon|calice|shooter|tasse|soucoupe/i.test(String(nom))
     ? 'Sommellerie' : 'Cuisine';
 }
 
@@ -204,6 +207,29 @@ function migrerCategories_(classeur) {
       ]));
     }
   }
+}
+
+/**
+ * Remet la colonne « Catégorie » du registre en accord avec l'onglet Réglages, pour toutes les
+ * casses passées. À lancer à la main après avoir reclassé des objets, si l'on veut que les
+ * anciens bilans suivent le nouveau classement. Les objets absents de Réglages ne sont pas modifiés.
+ */
+function reappliquerCategories() {
+  const registre = ressources_().classeur.getSheetByName('Registre');
+  const n = registre.getLastRow() - 1;
+  if (n < 1) return Logger.log('Registre vide : rien à faire.');
+  const parNom = Object.fromEntries(getReglages().objets.map(o => [o.nom, o.categorie]));
+  const objets = registre.getRange(2, 5, n, 1).getValues();
+  const plage = registre.getRange(2, 14, n, 1);
+  const actuelles = plage.getValues();
+  let changees = 0;
+  const nouvelles = objets.map((l, i) => {
+    const cible = parNom[String(l[0]).trim()];
+    if (cible && cible !== actuelles[i][0]) { changees++; return [cible]; }
+    return [actuelles[i][0]];
+  });
+  plage.setValues(nouvelles);
+  Logger.log(changees + ' casse(s) reclassée(s) dans le registre.');
 }
 
 /** Dossier Drive indiqué dans CONFIG.DOSSIER_PARENT, ou null s'il n'est pas renseigné. */
