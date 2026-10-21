@@ -210,7 +210,7 @@ function enregistrerCasse(d) {
       const blob = Utilities.newBlob(Utilities.base64Decode(d.photo), 'image/jpeg', nomFichier);
       const fichier = sousDossier.createFile(blob);
       fichier.setDescription(
-        [numero, objet + ' x' + quantite, lieu, cause, declarant, commentaire].filter(Boolean).join(' | ')
+        [numero, objet + ' x' + quantite, lieu, cause, commentaire].filter(Boolean).join(' | ')
       );
       urlPhoto = fichier.getUrl();
     }
@@ -249,7 +249,10 @@ function getBilan(mois) {
   return Object.assign({ mois: cible }, agreger_(entrees));
 }
 
-/** Toutes les casses du registre, sous forme d'objets. */
+/**
+ * Toutes les casses du registre, sous forme d'objets, pour les bilans.
+ * Volontairement anonyme : la colonne « Déclaré par » n'est pas lue, elle reste dans le registre.
+ */
 function lireRegistre_() {
   const plage = ressources_().classeur.getSheetByName('Registre').getDataRange();
   const valeurs = plage.getValues();
@@ -262,7 +265,7 @@ function lireRegistre_() {
     entrees.push({
       numero: String(l[0]), date: l[1], service: String(l[3]), objet: String(l[4]),
       quantite: Number(l[5]) || 0, cout: Number(l[7]) || 0,
-      lieu: String(l[8]), cause: String(l[9]), declarant: String(l[10]),
+      lieu: String(l[8]), cause: String(l[9]),
       commentaire: String(l[11]), urlPhoto: lien ? lien[1] : '',
     });
   }
@@ -510,7 +513,7 @@ function htmlRecap_(r, fuseau) {
       r.entrees.map(e => '<tr>' +
         '<td style="' + td + 'white-space:nowrap;color:' + gris + '">' + h(quand(e)) + '</td>' +
         '<td style="' + td + '"><strong>' + h(e.objet) + ' x' + e.quantite + '</strong><br>' +
-        h([e.lieu, e.cause, e.declarant].filter(Boolean).join(' · ')) +
+        h([e.lieu, e.cause].filter(Boolean).join(' · ')) +
         (e.commentaire ? '<br><em>' + h(e.commentaire) + '</em>' : '') + '</td>' +
         '<td style="' + td + 'text-align:right;white-space:nowrap">' + euros_(e.cout) +
         (e.urlPhoto ? '<br><a href="' + h(e.urlPhoto) + '" style="color:#8c2f1b">photo</a>' : '') + '</td>' +
@@ -519,7 +522,7 @@ function htmlRecap_(r, fuseau) {
     // Détail hebdomadaire : une fiche par casse, photo intégrée.
     html += titre('Détail');
     r.entrees.forEach(e => {
-      const infos = [e.lieu, e.cause, e.declarant ? 'déclaré par ' + e.declarant : ''].filter(Boolean).join(' · ');
+      const infos = [e.lieu, e.cause].filter(Boolean).join(' · ');
       html += '<div style="border-top:1px solid #e4dccf;padding:10px 0">' +
         (e.cid ? '<a href="' + h(e.urlPhoto) + '"><img src="cid:' + e.cid + '" width="140" ' +
           'style="float:right;margin-left:10px;border-radius:6px" alt="Photo"></a>' : '') +
@@ -564,7 +567,7 @@ function texteRecap_(r, fuseau) {
     l.push('', 'DÉTAIL');
     r.entrees.forEach(e => l.push('- ' + Utilities.formatDate(e.date, fuseau, 'dd/MM HH:mm') + ' ' +
       e.objet + ' x' + e.quantite + ' (' + euros_(e.cout) + ') ' +
-      [e.lieu, e.cause, e.declarant].filter(Boolean).join(', ') + (e.urlPhoto ? ' ' + e.urlPhoto : '')));
+      [e.lieu, e.cause].filter(Boolean).join(', ') + (e.urlPhoto ? ' ' + e.urlPhoto : '')));
   }
   l.push('', 'Registre complet : ' + r.urlClasseur);
   return l.join('\n');

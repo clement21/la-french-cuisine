@@ -25,7 +25,7 @@ Mon Drive/
 4. Chaque **lundi matin**, un e-mail récapitule la semaine écoulée, photos comprises.
 5. Le **1er de chaque mois**, un e-mail fait le bilan du mois écoulé.
 
-Ces e-mails sont purement informatifs : aucune alerte, aucun seuil.
+Ces e-mails sont purement informatifs : aucune alerte, aucun seuil. Ils sont aussi **anonymes** : le nom du déclarant n'apparaît que dans le registre (classeur et journal texte), jamais dans les bilans, ni dans l'application, ni dans la description des photos. Seule limite : un prénom tapé dans le champ « Commentaire » serait recopié tel quel.
 
 Les photos sont réduites à 1 600 pixels sur le téléphone avant l'envoi : l'envoi reste rapide même avec un réseau faible, et Drive ne se remplit pas trop vite (environ 200 à 400 ko par photo).
 
@@ -53,7 +53,7 @@ Chaque lundi matin, un e-mail résume la semaine écoulée (du lundi au dimanche
 - objet : `Casse du 12/10 au 18/10/2026 : 5 pièces, 37,50 €` ;
 - nombre de déclarations, de pièces et coût, comparés à la semaine précédente ;
 - tableaux par objet, par lieu et par cause ;
-- détail de chaque casse (jour, heure, service, déclarant, commentaire) avec la **photo intégrée** (12 au maximum, les suivantes en lien) ;
+- détail de chaque casse (jour, heure, service, lieu, cause, commentaire) avec la **photo intégrée** (12 au maximum, les suivantes en lien) ;
 - lien vers le registre complet.
 
 Mise en route (une fois, après l'installation) :
