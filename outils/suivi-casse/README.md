@@ -14,7 +14,7 @@ Mon Drive/
 └── Suivi de la casse/
     ├── Registre de la casse        (classeur Google Sheets)
     │     ├── onglet Registre       une ligne par casse, avec lien vers la photo
-    │     └── onglet Réglages       listes modifiables : objets + coût, lieux, causes, personnel
+    │     └── onglet Réglages       listes modifiables : objets + coût + catégorie, lieux, causes, personnel
     ├── journal-casse.txt           une ligne de texte par casse (copie lisible partout)
     └── 2026-10/
         ├── 2026-10-21_143207_verre-a-vin_x2.jpg
@@ -97,7 +97,9 @@ Avec l'accès « Tout le monde », quiconque connaît l'URL peut déclarer une c
 
 ## Modifier l'outil
 
-- Listes (objets, coûts, lieux, causes, personnel) : onglet **Réglages** du classeur, sans redéployer.
+- Listes (objets, coûts, catégories, lieux, causes, personnel) : onglet **Réglages** du classeur, sans redéployer.
+- **Catégories** (colonne C de Réglages) : chaque objet appartient à une catégorie, par défaut **Sommellerie** (verres, flûtes, carafes…) ou **Cuisine** (assiettes, tasses, ramequins…). L'application affiche un groupe de tuiles par catégorie, dans l'ordre de l'onglet, et les bilans (application et e-mails) ajoutent une ventilation « Par catégorie ». Pour reclasser un objet, changer sa catégorie ; pour créer une catégorie (par exemple « Bar » ou « Couverts »), il suffit de taper son nom. Le registre garde en colonne N la catégorie de l'objet au moment de la casse.
+- Installation antérieure aux catégories : recopier `Code.gs` puis exécuter **`installer`**. Les catégories sont proposées pour les objets existants et ajoutées aux anciennes lignes du registre, sans toucher aux cellules déjà remplies.
 - Code (`Code.gs`, `Index.html`) : après modification, **Gérer les déploiements → Modifier → Version : Nouvelle version**. L'URL ne change pas.
 - Heure de bascule midi/soir : `HEURE_SERVICE_SOIR` (16 h par défaut).
 

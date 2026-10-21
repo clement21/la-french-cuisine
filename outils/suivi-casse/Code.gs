@@ -38,10 +38,11 @@ const CONFIG = {
 const ENTETES_REGISTRE = [
   'N°', 'Horodatage', 'Date', 'Service', 'Objet', 'Quantité',
   'Coût unitaire (€)', 'Coût total (€)', 'Lieu', 'Cause',
-  'Déclaré par', 'Commentaire', 'Photo',
+  'Déclaré par', 'Commentaire', 'Photo', 'Catégorie',
 ];
 
 // Valeurs de départ de l'onglet Réglages (à adapter). Coûts à 0 : à renseigner.
+// La catégorie de chaque objet (Sommellerie ou Cuisine) est proposée par categorieParDefaut_().
 const REGLAGES_PAR_DEFAUT = {
   objets: [
     'Verre à vin', 'Verre à eau', 'Flûte à champagne', 'Verre à bière', 'Tumbler',
@@ -64,6 +65,7 @@ const REGLAGES_PAR_DEFAUT = {
 function installer() {
   const r = ressources_();
   reparerLiensPhotos();
+  migrerCategories_(r.classeur);
   Logger.log('Dossier : ' + r.dossier.getUrl());
   Logger.log('Classeur : ' + r.classeur.getUrl());
   Logger.log('Journal : ' + r.journal.getUrl());
@@ -157,6 +159,53 @@ function reparerLiensPhotos() {
   return reparees;
 }
 
+/* ------------------------------------------------------------------ */
+/* Catégories d'objets (Sommellerie, Cuisine…)                         */
+/* ------------------------------------------------------------------ */
+
+/** Catégorie proposée pour un objet d'après son nom : la verrerie va en Sommellerie. */
+function categorieParDefaut_(nom) {
+  return /verre|fl[ûu]te|coupe|tumbler|carafe|d[ée]canteur|pichet|seau|ballon|calice|shooter/i.test(String(nom))
+    ? 'Sommellerie' : 'Cuisine';
+}
+
+/**
+ * Ajoute les catégories à une installation qui n'en avait pas :
+ * colonne C « Catégorie » de Réglages (pré-remplie) et colonne N « Catégorie » du registre.
+ * Ne touche jamais une cellule déjà remplie. Lancée par installer() et, au besoin, par getReglages().
+ */
+function migrerCategories_(classeur) {
+  const entete = r => r.setFontWeight('bold').setBackground('#f3ede2');
+
+  const reglages = classeur.getSheetByName('Réglages');
+  if (String(reglages.getRange('C1').getValue()).trim() === '') {
+    entete(reglages.getRange('C1').setValue('Catégorie'));
+    const n = reglages.getLastRow() - 1;
+    if (n > 0) {
+      const plage = reglages.getRange(2, 1, n, 3);
+      const v = plage.getValues();
+      v.forEach(l => { if (String(l[0]).trim() && !String(l[2]).trim()) l[2] = categorieParDefaut_(l[0]); });
+      reglages.getRange(2, 3, n, 1).setValues(v.map(l => [l[2]]));
+    }
+  }
+
+  const registre = classeur.getSheetByName('Registre');
+  if (String(registre.getRange(1, 14).getValue()).trim() === '') {
+    entete(registre.getRange(1, 14).setValue('Catégorie'));
+    const n = registre.getLastRow() - 1;
+    if (n > 0) {
+      const noms = reglages.getRange(2, 1, Math.max(reglages.getLastRow() - 1, 1), 3).getValues();
+      const parNom = Object.fromEntries(noms.filter(l => String(l[0]).trim())
+        .map(l => [String(l[0]).trim(), String(l[2]).trim()]));
+      const objets = registre.getRange(2, 5, n, 1).getValues();
+      const actuelles = registre.getRange(2, 14, n, 1).getValues();
+      registre.getRange(2, 14, n, 1).setValues(objets.map((l, i) => [
+        String(actuelles[i][0]).trim() || (l[0] ? parNom[String(l[0]).trim()] || categorieParDefaut_(l[0]) : ''),
+      ]));
+    }
+  }
+}
+
 /** Dossier Drive indiqué dans CONFIG.DOSSIER_PARENT, ou null s'il n'est pas renseigné. */
 function dossierParent_() {
   const valeur = String(CONFIG.DOSSIER_PARENT || '').trim();
@@ -198,10 +247,10 @@ function creerClasseur_(dossier) {
   const reglages = classeur.insertSheet('Réglages');
   const d = REGLAGES_PAR_DEFAUT;
   const n = Math.max(d.objets.length, d.lieux.length, d.causes.length, 1);
-  const lignes = [['Objet', 'Coût unitaire (€)', '', 'Lieu', 'Cause', 'Personnel']];
+  const lignes = [['Objet', 'Coût unitaire (€)', 'Catégorie', 'Lieu', 'Cause', 'Personnel']];
   for (let i = 0; i < n; i++) {
     lignes.push([
-      d.objets[i] || '', d.objets[i] ? 0 : '', '',
+      d.objets[i] || '', d.objets[i] ? 0 : '', d.objets[i] ? categorieParDefaut_(d.objets[i]) : '',
       d.lieux[i] || '', d.causes[i] || '', d.personnel[i] || '',
     ]);
   }
@@ -211,7 +260,8 @@ function creerClasseur_(dossier) {
   reglages.setFrozenRows(1);
   reglages.getRange('H1').setValue(
     'Modifiez librement ces listes : l\'application les relit à chaque ouverture. ' +
-    'Renseignez le coût d\'achat de chaque objet pour chiffrer la casse.'
+    'Renseignez le coût d\'achat de chaque objet pour chiffrer la casse. ' +
+    'La catégorie (Sommellerie, Cuisine…) regroupe les objets dans l\'application et les bilans.'
   );
   return classeur;
 }
@@ -229,13 +279,26 @@ function doGet() {
 
 /** Listes affichées dans le formulaire. */
 function getReglages() {
-  const feuille = ressources_().classeur.getSheetByName('Réglages');
-  const valeurs = feuille.getDataRange().getValues().slice(1);
+  const classeur = ressources_().classeur;
+  const feuille = classeur.getSheetByName('Réglages');
+  let valeurs = feuille.getDataRange().getValues();
+  if (String(valeurs[0][2]).trim() === '') {
+    // Installation antérieure aux catégories : on les ajoute une fois pour toutes.
+    migrerCategories_(classeur);
+    valeurs = feuille.getDataRange().getValues();
+  }
+  valeurs = valeurs.slice(1);
   const colonne = i => valeurs.map(l => String(l[i]).trim()).filter(Boolean);
+  const objets = valeurs
+    .filter(l => String(l[0]).trim())
+    .map(l => ({
+      nom: String(l[0]).trim(),
+      cout: Number(l[1]) || 0,
+      categorie: String(l[2]).trim() || 'Autres',
+    }));
   return {
-    objets: valeurs
-      .filter(l => String(l[0]).trim())
-      .map(l => ({ nom: String(l[0]).trim(), cout: Number(l[1]) || 0 })),
+    objets,
+    categories: objets.map(o => o.categorie).filter((c, i, t) => t.indexOf(c) === i),
     lieux: colonne(3),
     causes: colonne(4),
     personnel: colonne(5),
@@ -270,6 +333,7 @@ function enregistrerCasse(d) {
     const reglages = getReglages();
     const fiche = reglages.objets.find(o => o.nom === objet);
     const coutUnitaire = fiche ? fiche.cout : 0;
+    const categorie = fiche ? fiche.categorie : '';
     const coutTotal = Math.round(coutUnitaire * quantite * 100) / 100;
 
     const lieu = texte_(d.lieu, 60);
@@ -295,7 +359,7 @@ function enregistrerCasse(d) {
     const registre = classeur.getSheetByName('Registre');
     registre.appendRow([
       numero, maintenant, maintenant, service, objet, quantite,
-      coutUnitaire, coutTotal, lieu, cause, declarant, commentaire, '',
+      coutUnitaire, coutTotal, lieu, cause, declarant, commentaire, '', categorie,
     ]);
     // Lien cliquable « Voir la photo » : un vrai lien plutôt qu'une formule =HYPERLINK,
     // dont la syntaxe change selon la langue du classeur (virgule ou point-virgule).
@@ -336,11 +400,17 @@ function lireRegistre_() {
   const feuille = ressources_().classeur.getSheetByName('Registre');
   const valeurs = feuille.getDataRange().getValues();
   const liens = urlsPhotos_(feuille);
+  let categories = null; // objet -> catégorie actuelle, pour les lignes sans catégorie
   const entrees = [];
   for (let i = 1; i < valeurs.length; i++) {
     const l = valeurs[i];
     if (!(l[1] instanceof Date)) continue;
-    entrees.push({
+    let categorie = String(l[13] || '').trim();
+    if (!categorie) {
+      categories = categories || Object.fromEntries(getReglages().objets.map(o => [o.nom, o.categorie]));
+      categorie = categories[String(l[4])] || categorieParDefaut_(l[4]);
+    }
+    entrees.push({ categorie,
       numero: String(l[0]), date: l[1], service: String(l[3]), objet: String(l[4]),
       quantite: Number(l[5]) || 0, cout: Number(l[7]) || 0,
       lieu: String(l[8]), cause: String(l[9]),
@@ -351,11 +421,12 @@ function lireRegistre_() {
 }
 
 function agreger_(entrees) {
-  const bilan = { declarations: 0, pieces: 0, cout: 0, parObjet: {}, parLieu: {}, parCause: {} };
+  const bilan = { declarations: 0, pieces: 0, cout: 0, parCategorie: {}, parObjet: {}, parLieu: {}, parCause: {} };
   entrees.forEach(e => {
     bilan.declarations++;
     bilan.pieces += e.quantite;
     bilan.cout += e.cout;
+    ajouter_(bilan.parCategorie, e.categorie, e.quantite, e.cout);
     ajouter_(bilan.parObjet, e.objet, e.quantite, e.cout);
     ajouter_(bilan.parLieu, e.lieu || 'Non précisé', e.quantite, e.cout);
     ajouter_(bilan.parCause, e.cause || 'Non précisée', e.quantite, e.cout);
@@ -571,6 +642,7 @@ function htmlRecap_(r, fuseau) {
       chiffre(b.pieces, b.pieces > 1 ? 'pièces' : 'pièce') + chiffre(euros_(b.cout), 'coût') +
       '</tr></table>' +
       '<p style="color:' + gris + '">' + h(comparaison_(r)) + '</p>' +
+      titre('Par catégorie') + tableau(trier_(b.parCategorie)) +
       titre('Par objet') + tableau(trier_(b.parObjet)) +
       titre('Par lieu') + tableau(trier_(b.parLieu)) +
       titre('Par cause') + tableau(trier_(b.parCause));
@@ -632,6 +704,7 @@ function texteRecap_(r, fuseau) {
   } else {
     l.push(pluriel_(b.declarations, 'déclaration') + ', ' + pluriel_(b.pieces, 'pièce') + ', ' + euros_(b.cout));
     l.push(comparaison_(r));
+    lignes('Par catégorie', trier_(b.parCategorie));
     lignes('Par objet', trier_(b.parObjet));
     lignes('Par lieu', trier_(b.parLieu));
     lignes('Par cause', trier_(b.parCause));

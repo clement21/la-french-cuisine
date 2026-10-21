@@ -27,6 +27,8 @@
   .photo img { width: 100%; max-height: 320px; object-fit: cover; display: block; }
   .photo .icone { font-size: 44px; }
   input[type=file] { display: none; }
+  .groupe + .groupe { margin-top: 14px; }
+  .groupe h3 { font-size: 15px; margin: 0 0 8px; color: var(--accent); }
   .tuiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
   .tuiles button { min-height: 52px; padding: 8px; border-radius: 10px; border: 1px solid var(--bord);
                    background: #fff; font-size: 15px; color: var(--encre); }
@@ -81,7 +83,7 @@
 
     <section class="bloc">
       <h2>2. Objet</h2>
-      <div class="tuiles" id="objets"><span class="discret">Chargement…</span></div>
+      <div id="objets"><span class="discret">Chargement…</span></div>
     </section>
 
     <section class="bloc">
@@ -133,6 +135,7 @@
         <div><strong id="bCout">–</strong><span>coût</span></div>
       </div>
     </section>
+    <section class="bloc"><h2>Par catégorie</h2><table id="tCategories"></table></section>
     <section class="bloc"><h2>Par objet</h2><table id="tObjets"></table></section>
     <section class="bloc"><h2>Par lieu</h2><table id="tLieux"></table></section>
     <section class="bloc"><h2>Par cause</h2><table id="tCauses"></table></section>
@@ -152,8 +155,13 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /** Crée une rangée de tuiles à choix unique. */
-  function tuiles(conteneur, valeurs, cle, libelle) {
+  /**
+   * Crée une rangée de tuiles à choix unique.
+   * « zone » : ensemble où un seul choix est possible (par défaut la rangée elle-même ;
+   * pour les objets, les deux groupes Sommellerie et Cuisine à la fois).
+   */
+  function tuiles(conteneur, valeurs, cle, libelle, zone) {
+    zone = zone || conteneur;
     conteneur.textContent = '';
     valeurs.forEach(v => {
       const b = document.createElement('button');
@@ -162,7 +170,7 @@
       b.setAttribute('aria-pressed', String(etat[cle] === v));
       b.addEventListener('click', () => {
         etat[cle] = etat[cle] === v ? '' : v;
-        [...conteneur.children].forEach(x => x.setAttribute('aria-pressed', 'false'));
+        zone.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', 'false'));
         if (etat[cle]) b.setAttribute('aria-pressed', 'true');
       });
       conteneur.appendChild(b);
@@ -172,8 +180,21 @@
   function construireFormulaire(r) {
     etat.reglages = r;
     const couts = Object.fromEntries(r.objets.map(o => [o.nom, o.cout]));
-    tuiles($('objets'), r.objets.map(o => o.nom), 'objet',
-      nom => couts[nom] ? nom + ' · ' + euros(couts[nom]) : nom);
+    // Objets regroupés par catégorie (Sommellerie, Cuisine…), dans l'ordre de l'onglet Réglages.
+    const zoneObjets = $('objets');
+    zoneObjets.textContent = '';
+    r.categories.forEach(cat => {
+      const groupe = document.createElement('div');
+      groupe.className = 'groupe';
+      const titre = document.createElement('h3');
+      titre.textContent = cat;
+      const rangee = document.createElement('div');
+      rangee.className = 'tuiles';
+      groupe.append(titre, rangee);
+      zoneObjets.appendChild(groupe);
+      tuiles(rangee, r.objets.filter(o => o.categorie === cat).map(o => o.nom), 'objet',
+        nom => couts[nom] ? nom + ' · ' + euros(couts[nom]) : nom, zoneObjets);
+    });
     tuiles($('lieux'), r.lieux, 'lieu');
     tuiles($('causes'), r.causes, 'cause');
     etat.service = new Date().getHours() >= r.heureSoir ? 'Soir' : 'Midi';
@@ -295,6 +316,7 @@
         $('bDecl').textContent = b.declarations;
         $('bPieces').textContent = b.pieces;
         $('bCout').textContent = euros(b.cout);
+        remplirTable($('tCategories'), b.parCategorie);
         remplirTable($('tObjets'), b.parObjet);
         remplirTable($('tLieux'), b.parLieu);
         remplirTable($('tCauses'), b.parCause);
