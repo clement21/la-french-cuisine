@@ -15,6 +15,9 @@ const CONFIG = {
   NOM_DOSSIER: 'Suivi de la casse',
   NOM_CLASSEUR: 'Registre de la casse',
   NOM_JOURNAL: 'journal-casse.txt',
+  // Dossier Google Drive où ranger « Suivi de la casse » : coller son lien (ou son identifiant).
+  // Vide = à la racine de « Mon Drive ». Une installation existante y est déplacée telle quelle.
+  DOSSIER_PARENT: '',
   // Code à 4 chiffres demandé avant chaque déclaration. Laisser vide pour ne pas en demander.
   CODE_PIN: '',
   // Heure (0-23) à partir de laquelle on considère que c'est le service du soir.
@@ -69,10 +72,17 @@ function installer() {
 function ressources_() {
   const props = PropertiesService.getScriptProperties();
 
+  const parent = dossierParent_();
   let dossier = parId_(props.getProperty('DOSSIER_ID'), id => DriveApp.getFolderById(id));
   if (!dossier) {
-    dossier = DriveApp.createFolder(CONFIG.NOM_DOSSIER);
+    dossier = (parent || DriveApp.getRootFolder()).createFolder(CONFIG.NOM_DOSSIER);
     props.setProperty('DOSSIER_ID', dossier.getId());
+    props.setProperty('PARENT_ID', parent ? parent.getId() : '');
+  } else if (parent && props.getProperty('PARENT_ID') !== parent.getId()) {
+    // Réglage nouveau ou modifié : on déplace tout le dossier (photos, classeur, journal).
+    // Les identifiants ne changent pas : liens, registre et e-mails restent valables.
+    dossier.moveTo(parent);
+    props.setProperty('PARENT_ID', parent.getId());
   }
 
   const fichierClasseur = parId_(props.getProperty('CLASSEUR_ID'), id => DriveApp.getFileById(id));
@@ -94,6 +104,21 @@ function ressources_() {
   }
 
   return { dossier, classeur, journal };
+}
+
+/** Dossier Drive indiqué dans CONFIG.DOSSIER_PARENT, ou null s'il n'est pas renseigné. */
+function dossierParent_() {
+  const valeur = String(CONFIG.DOSSIER_PARENT || '').trim();
+  if (!valeur) return null;
+  const m = /folders\/([\w-]+)/.exec(valeur) || /[?&]id=([\w-]+)/.exec(valeur);
+  const id = m ? m[1] : valeur;
+  try {
+    const dossier = DriveApp.getFolderById(id);
+    if (!dossier.isTrashed()) return dossier;
+  } catch (e) {
+    // traité ci-dessous
+  }
+  throw new Error('Dossier Drive introuvable : vérifiez le lien indiqué dans DOSSIER_PARENT (Code.gs).');
 }
 
 /** Ouvre une ressource Drive par son identifiant ; null si absente ou à la corbeille. */

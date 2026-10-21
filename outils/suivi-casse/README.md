@@ -79,6 +79,16 @@ Le 1er du mois, entre 8 h et 9 h (même réglage `HEURE_RECAP`), un e-mail fait 
 
 Mise en route : exécuter **`envoyerRecapMensuel`** pour recevoir tout de suite le bilan du mois dernier, puis **`installerRecapMensuel`** pour le programmer. Pour arrêter : **`supprimerRecapMensuel`**. Les deux récapitulatifs sont indépendants : on peut garder l'un sans l'autre.
 
+## Ranger le dossier dans un dossier Drive précis
+
+Par défaut, « Suivi de la casse » est créé à la racine de « Mon Drive ». Pour le ranger ailleurs (par exemple `Restaurant / Gestion`) :
+
+1. Dans Google Drive, ouvrir le dossier de destination et copier son lien dans la barre d'adresse : `https://drive.google.com/drive/folders/1AbC…`.
+2. En haut de `Code.gs`, le coller entre les apostrophes : `DOSSIER_PARENT: 'https://drive.google.com/drive/folders/1AbC…',` puis enregistrer (Ctrl+S).
+3. Exécuter **`installer`** une fois, ou **Déployer → Gérer les déploiements → Modifier → Nouvelle version** puis ouvrir l'application.
+
+Si l'outil est déjà installé, **tout le dossier est déplacé** avec son contenu : photos, classeur et journal. Les liens ne changent pas, donc le registre, les anciens e-mails et l'application continuent de fonctionner. Si le lien est erroné, le script s'arrête avec le message « Dossier Drive introuvable » et ne crée rien ailleurs. Pour un **Drive partagé** (Google Workspace), le déplacement automatique peut être refusé : déplacer alors le dossier à la main, le script le retrouvera.
+
 ## Sécurité
 
 Avec l'accès **Moi uniquement**, rien à faire : seul votre compte Google peut ouvrir l'application. Ce qui suit ne concerne que l'accès ouvert à d'autres personnes.
@@ -95,4 +105,4 @@ Avec l'accès « Tout le monde », quiconque connaît l'URL peut déclarer une c
 
 - Il faut du réseau au moment de l'envoi (pas de mode hors ligne).
 - Le coût est figé au moment de la déclaration : modifier un prix dans Réglages ne recalcule pas les casses passées.
-- Ne pas renommer les onglets « Registre » et « Réglages ». Le dossier et le classeur, eux, peuvent être renommés ou déplacés : le script les retrouve par leur identifiant (et les recrée s'ils sont mis à la corbeille).
+- Ne pas renommer les onglets « Registre » et « Réglages ». Le dossier et le classeur, eux, peuvent être renommés ou déplacés à la main : le script les retrouve par leur identifiant (et les recrée s'ils sont mis à la corbeille). Si `DOSSIER_PARENT` est renseigné, le script ne déplace le dossier que lorsque ce réglage change.
