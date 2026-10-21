@@ -144,11 +144,6 @@
   const $ = id => document.getElementById(id);
   const euros = n => n.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
 
-  // Mémoire locale du dernier déclarant (confort uniquement ; tolère un stockage bloqué).
-  const memoire = {
-    lire(cle) { try { return localStorage.getItem(cle) || ''; } catch (e) { return ''; } },
-    ecrire(cle, v) { try { localStorage.setItem(cle, v); } catch (e) {} },
-  };
 
   function afficherMessage(texte, type) {
     const m = $('message');
@@ -187,7 +182,7 @@
     const sel = $('declarant');
     sel.length = 1;
     r.personnel.forEach(p => sel.add(new Option(p, p)));
-    sel.value = memoire.lire('declarant');
+    sel.value = ''; // repart de « facultatif » à chaque déclaration : rien n'est présélectionné
     $('blocPin').hidden = !r.pinRequis;
   }
 
@@ -245,7 +240,6 @@
     if (!etat.photo && !confirm('Aucune photo. Enregistrer quand même ?')) return;
 
     const declarant = $('declarant').value;
-    memoire.ecrire('declarant', declarant);
     const bouton = $('envoyer');
     bouton.disabled = true;
     bouton.textContent = 'Envoi en cours…';

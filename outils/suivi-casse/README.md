@@ -41,8 +41,8 @@ Avec le compte Google du restaurant (celui qui doit posséder les photos) :
 6. Ouvrir le classeur « Registre de la casse » créé dans Drive, onglet **Réglages** : renseigner le **coût d'achat** de chaque objet, compléter la liste du **personnel**, retirer ou ajouter des objets.
 7. **Déployer** → **Nouveau déploiement** → type **Application Web** :
    - *Exécuter en tant que* : **Moi** (les photos arrivent toujours dans votre Drive) ;
-   - *Qui a accès* : **Tout le monde** si l'équipe n'a pas de compte Google, sinon **Tout utilisateur disposant d'un compte Google**.
-8. Copier l'URL `https://script.google.com/macros/s/…/exec`, l'envoyer à l'équipe et, sur chaque téléphone, l'**ajouter à l'écran d'accueil** (Safari : bouton Partager ; Chrome : menu ⋮).
+   - *Qui a accès* : **Moi uniquement** si vous êtes seul à déclarer, depuis votre téléphone connecté à votre compte Google : c'est le réglage le plus sûr, personne d'autre ne peut ouvrir l'application et le code PIN devient inutile. Si plusieurs personnes doivent déclarer : **Tout le monde** (l'équipe n'a pas de compte Google) ou **Tout utilisateur disposant d'un compte Google**.
+8. Copier l'URL `https://script.google.com/macros/s/…/exec`, l'ouvrir sur le téléphone qui servira aux déclarations (ou l'envoyer à l'équipe) et l'**ajouter à l'écran d'accueil** (Safari : bouton Partager ; Chrome : menu ⋮).
 
 Astuce : imprimer cette URL en **QR code** et la coller près de la plonge et du bar.
 
@@ -80,6 +80,8 @@ Le 1er du mois, entre 8 h et 9 h (même réglage `HEURE_RECAP`), un e-mail fait 
 Mise en route : exécuter **`envoyerRecapMensuel`** pour recevoir tout de suite le bilan du mois dernier, puis **`installerRecapMensuel`** pour le programmer. Pour arrêter : **`supprimerRecapMensuel`**. Les deux récapitulatifs sont indépendants : on peut garder l'un sans l'autre.
 
 ## Sécurité
+
+Avec l'accès **Moi uniquement**, rien à faire : seul votre compte Google peut ouvrir l'application. Ce qui suit ne concerne que l'accès ouvert à d'autres personnes.
 
 Avec l'accès « Tout le monde », quiconque connaît l'URL peut déclarer une casse et consulter le bilan du mois ainsi que les listes de l'onglet Réglages (prénoms du personnel compris) ; il ne peut ni voir les photos, ni modifier le registre. Pour limiter cela, mettre un code dans `CODE_PIN` en haut de `Code.gs`, par exemple `CODE_PIN: '4821'`, puis **Déployer → Gérer les déploiements → Modifier → Nouvelle version**. Le formulaire demandera alors le code.
 
