@@ -63,6 +63,7 @@ const REGLAGES_PAR_DEFAUT = {
 /** À lancer une fois depuis l'éditeur : crée le dossier, le classeur et le journal. */
 function installer() {
   const r = ressources_();
+  reparerLiensPhotos();
   Logger.log('Dossier : ' + r.dossier.getUrl());
   Logger.log('Classeur : ' + r.classeur.getUrl());
   Logger.log('Journal : ' + r.journal.getUrl());
@@ -104,6 +105,56 @@ function ressources_() {
   }
 
   return { dossier, classeur, journal };
+}
+
+/* ------------------------------------------------------------------ */
+/* Liens vers les photos (colonne M du registre)                       */
+/* ------------------------------------------------------------------ */
+
+function lienPhoto_(url) {
+  return SpreadsheetApp.newRichTextValue().setText('Voir la photo').setLinkUrl(url).build();
+}
+
+/**
+ * Adresse de la photo de chaque ligne du registre (indice = numéro de ligne - 1).
+ * Lit le lien cliquable, et à défaut l'adresse contenue dans une ancienne formule =HYPERLINK
+ * (même en erreur) ou dans le texte de la cellule.
+ */
+function urlsPhotos_(feuille) {
+  const n = feuille.getLastRow();
+  if (n < 1) return [];
+  const plage = feuille.getRange(1, 13, n, 1);
+  const riches = plage.getRichTextValues();
+  const formules = plage.getFormulas();
+  const valeurs = plage.getDisplayValues();
+  const adresse = /https:\/\/drive\.google\.com\/[^"'\s;,)]+/;
+  return riches.map((ligne, i) => {
+    const r = ligne[0];
+    const lien = r && (r.getLinkUrl() || r.getRuns().map(x => x.getLinkUrl()).find(Boolean));
+    if (lien) return lien;
+    const m = adresse.exec(formules[i][0]) || adresse.exec(valeurs[i][0]);
+    return m ? m[0] : '';
+  });
+}
+
+/**
+ * Transforme les anciennes cellules « Photo » (formule =HYPERLINK, parfois en erreur)
+ * en liens cliquables « Voir la photo ». Sans effet sur les lignes déjà correctes.
+ * Lancée automatiquement par installer() ; peut aussi être exécutée seule.
+ */
+function reparerLiensPhotos() {
+  const feuille = ressources_().classeur.getSheetByName('Registre');
+  const urls = urlsPhotos_(feuille);
+  const riches = urls.length ? feuille.getRange(1, 13, urls.length, 1).getRichTextValues() : [];
+  let reparees = 0;
+  for (let i = 1; i < urls.length; i++) {
+    const dejaBon = riches[i][0] && riches[i][0].getLinkUrl() && riches[i][0].getText() === 'Voir la photo';
+    if (!urls[i] || dejaBon) continue;
+    feuille.getRange(i + 1, 13).setRichTextValue(lienPhoto_(urls[i]));
+    reparees++;
+  }
+  Logger.log(reparees ? reparees + ' lien(s) photo réparé(s) dans le registre.' : 'Liens photo : rien à réparer.');
+  return reparees;
 }
 
 /** Dossier Drive indiqué dans CONFIG.DOSSIER_PARENT, ou null s'il n'est pas renseigné. */
@@ -241,11 +292,14 @@ function enregistrerCasse(d) {
     }
 
     // 2. Ligne du registre.
-    classeur.getSheetByName('Registre').appendRow([
+    const registre = classeur.getSheetByName('Registre');
+    registre.appendRow([
       numero, maintenant, maintenant, service, objet, quantite,
-      coutUnitaire, coutTotal, lieu, cause, declarant, commentaire,
-      urlPhoto ? '=HYPERLINK("' + urlPhoto + '","Voir la photo")' : '',
+      coutUnitaire, coutTotal, lieu, cause, declarant, commentaire, '',
     ]);
+    // Lien cliquable « Voir la photo » : un vrai lien plutôt qu'une formule =HYPERLINK,
+    // dont la syntaxe change selon la langue du classeur (virgule ou point-virgule).
+    if (urlPhoto) registre.getRange(registre.getLastRow(), 13).setRichTextValue(lienPhoto_(urlPhoto));
 
     // 3. Ligne du journal texte.
     const ligne = [
@@ -279,19 +333,18 @@ function getBilan(mois) {
  * Volontairement anonyme : la colonne « Déclaré par » n'est pas lue, elle reste dans le registre.
  */
 function lireRegistre_() {
-  const plage = ressources_().classeur.getSheetByName('Registre').getDataRange();
-  const valeurs = plage.getValues();
-  const formules = plage.getFormulas();
+  const feuille = ressources_().classeur.getSheetByName('Registre');
+  const valeurs = feuille.getDataRange().getValues();
+  const liens = urlsPhotos_(feuille);
   const entrees = [];
   for (let i = 1; i < valeurs.length; i++) {
     const l = valeurs[i];
     if (!(l[1] instanceof Date)) continue;
-    const lien = /HYPERLINK\("([^"]+)"/i.exec(formules[i][12] || '');
     entrees.push({
       numero: String(l[0]), date: l[1], service: String(l[3]), objet: String(l[4]),
       quantite: Number(l[5]) || 0, cout: Number(l[7]) || 0,
       lieu: String(l[8]), cause: String(l[9]),
-      commentaire: String(l[11]), urlPhoto: lien ? lien[1] : '',
+      commentaire: String(l[11]), urlPhoto: liens[i] || '',
     });
   }
   return entrees;

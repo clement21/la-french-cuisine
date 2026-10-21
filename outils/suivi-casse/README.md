@@ -101,6 +101,10 @@ Avec l'accès « Tout le monde », quiconque connaît l'URL peut déclarer une c
 - Code (`Code.gs`, `Index.html`) : après modification, **Gérer les déploiements → Modifier → Version : Nouvelle version**. L'URL ne change pas.
 - Heure de bascule midi/soir : `HEURE_SERVICE_SOIR` (16 h par défaut).
 
+## Dépannage
+
+- **La colonne « Photo » du registre affiche une erreur ou un texte non cliquable** (versions antérieures au 21/10/2026, qui écrivaient une formule `=HYPERLINK` dépendant de la langue du classeur) : recopier `Code.gs`, puis exécuter **`installer`** ou **`reparerLiensPhotos`**. Les anciennes lignes deviennent des liens « Voir la photo ». Les nouvelles déclarations écrivent directement un lien cliquable, quelle que soit la langue du classeur.
+
 ## Limites connues
 
 - Il faut du réseau au moment de l'envoi (pas de mode hors ligne).
