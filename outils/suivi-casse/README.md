@@ -22,6 +22,7 @@ Mon Drive/
 ```
 
 3. L'onglet **Bilan du mois** de l'application affiche le nombre de déclarations, de pièces et le coût, ventilés par objet, par lieu et par cause.
+4. Chaque **lundi matin**, un e-mail récapitule la semaine écoulée, photos comprises.
 
 Les photos sont réduites à 1 600 pixels sur le téléphone avant l'envoi : l'envoi reste rapide même avec un réseau faible, et Drive ne se remplit pas trop vite (environ 200 à 400 ko par photo).
 
@@ -41,6 +42,27 @@ Avec le compte Google du restaurant (celui qui doit posséder les photos) :
 8. Copier l'URL `https://script.google.com/macros/s/…/exec`, l'envoyer à l'équipe et, sur chaque téléphone, l'**ajouter à l'écran d'accueil** (Safari : bouton Partager ; Chrome : menu ⋮).
 
 Astuce : imprimer cette URL en **QR code** et la coller près de la plonge et du bar.
+
+## Récapitulatif par e-mail chaque lundi
+
+Chaque lundi matin, un e-mail résume la semaine écoulée (du lundi au dimanche) :
+
+- objet : `Casse du 12/10 au 18/10/2026 : 5 pièces, 37,50 €` ;
+- nombre de déclarations, de pièces et coût, comparés à la semaine précédente ;
+- tableaux par objet, par lieu et par cause ;
+- détail de chaque casse (jour, heure, service, déclarant, commentaire) avec la **photo intégrée** (12 au maximum, les suivantes en lien) ;
+- lien vers le registre complet.
+
+Mise en route (une fois, après l'installation) :
+
+1. En haut de `Code.gs`, régler si besoin :
+   - `EMAILS_RECAP` : destinataires séparés par des virgules, par exemple `'gerant@monresto.fr, chef@monresto.fr'`. Vide = l'adresse du compte qui a installé le script ;
+   - `HEURE_RECAP` : 8 par défaut. Google envoie dans l'heure qui suit, donc entre 8 h et 9 h ;
+   - `RECAP_SI_AUCUNE_CASSE` : `true` pour recevoir aussi un e-mail les semaines sans casse.
+2. Choisir la fonction **`envoyerRecapHebdo`** et cliquer sur **Exécuter** : Google demande l'autorisation d'envoyer des e-mails, et un premier récapitulatif (semaine dernière) arrive aussitôt.
+3. Choisir la fonction **`installerRecapLundi`** et cliquer sur **Exécuter**. C'est programmé : l'horloge ⏰ « Déclencheurs » du menu de gauche l'affiche.
+
+Pour arrêter : exécuter **`supprimerRecapLundi`**. Après une modification de `EMAILS_RECAP` ou `HEURE_RECAP`, relancer `installerRecapLundi` (inutile de redéployer l'application). L'e-mail part depuis le compte Google qui a installé le script ; un compte gratuit peut envoyer 100 e-mails par jour, bien assez ici.
 
 ## Sécurité
 
