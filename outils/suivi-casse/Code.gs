@@ -168,7 +168,7 @@ function reparerLiensPhotos() {
  * les tasses et les soucoupes vont en Sommellerie ; le reste en Cuisine.
  */
 function categorieParDefaut_(nom) {
-  return /verre|fl[ûu]te|coupe|tumbler|carafe|d[ée]canteur|pichet|seau|ballon|calice|shooter|tasse|soucoupe/i.test(String(nom))
+  return /verre|fl[ûu]te|coupe|tumbler|old.?fashion|martini|highball|hi.?ball|whisky|cocktail|chope|ap[ée]ritif|digestif|carafe|d[ée]canteur|pichet|seau|ballon|calice|shooter|tasse|soucoupe/i.test(String(nom))
     ? 'Sommellerie' : 'Cuisine';
 }
 
