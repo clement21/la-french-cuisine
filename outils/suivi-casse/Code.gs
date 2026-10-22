@@ -347,7 +347,11 @@ function enregistrerCasse(d) {
   if (!(quantite >= 1 && quantite <= 500)) throw new Error('Quantité invalide.');
 
   const verrou = LockService.getScriptLock();
-  verrou.waitLock(30000);
+  if (!verrou.tryLock(30000)) {
+    throw new Error('Une autre déclaration est en cours d\'enregistrement : réessayez dans quelques secondes.');
+  }
+  // Étape en cours, citée dans le message d'erreur pour savoir où l'enregistrement a échoué.
+  let etape = 'ouverture du dossier Drive';
   try {
     const { dossier, classeur, journal } = ressources_();
     const fuseau = Session.getScriptTimeZone();
@@ -356,6 +360,7 @@ function enregistrerCasse(d) {
     const numero = 'C' + Utilities.formatDate(maintenant, fuseau, 'yyMMdd-HHmmss');
 
     // Coût unitaire relu côté serveur : on ne fait pas confiance au téléphone.
+    etape = 'lecture des réglages';
     const reglages = getReglages();
     const fiche = reglages.objets.find(o => o.nom === objet);
     const coutUnitaire = fiche ? fiche.cout : 0;
@@ -370,6 +375,7 @@ function enregistrerCasse(d) {
 
     // 1. Photo, rangée par mois.
     let urlPhoto = '';
+    etape = 'enregistrement de la photo';
     if (d.photo) {
       const sousDossier = sousDossier_(dossier, Utilities.formatDate(maintenant, fuseau, 'yyyy-MM'));
       const nomFichier = horodatage + '_' + slug_(objet) + '_x' + quantite + '.jpg';
@@ -382,6 +388,7 @@ function enregistrerCasse(d) {
     }
 
     // 2. Ligne du registre.
+    etape = 'écriture dans le registre';
     const registre = classeur.getSheetByName('Registre');
     registre.appendRow([
       numero, maintenant, maintenant, service, objet, quantite,
@@ -392,6 +399,7 @@ function enregistrerCasse(d) {
     if (urlPhoto) registre.getRange(registre.getLastRow(), 13).setRichTextValue(lienPhoto_(urlPhoto));
 
     // 3. Ligne du journal texte.
+    etape = 'écriture dans le journal texte';
     const ligne = [
       numero,
       Utilities.formatDate(maintenant, fuseau, 'dd/MM/yyyy HH:mm'),
@@ -405,6 +413,10 @@ function enregistrerCasse(d) {
     journal.setContent(journal.getBlob().getDataAsString('UTF-8') + ligne + '\n');
 
     return { numero, urlPhoto, coutTotal };
+  } catch (e) {
+    // Trace complète dans « Exécutions » (menu de gauche de l'éditeur), message clair pour le téléphone.
+    console.error('enregistrerCasse, étape « ' + etape + ' »', e && e.stack ? e.stack : e);
+    throw new Error('Étape « ' + etape + ' » : ' + ((e && e.message) || String(e)));
   } finally {
     verrou.releaseLock();
   }

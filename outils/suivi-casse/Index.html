@@ -148,6 +148,21 @@
   const euros = n => n.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
 
 
+  /**
+   * Texte lisible d'une erreur renvoyée par Google, même quand elle n'a pas de champ « message »
+   * (problème de connexion, d'autorisation ou de compte Google).
+   */
+  function texteErreur(err) {
+    if (err && err.message) return err.message;
+    if (typeof err === 'string' && err) return err;
+    try {
+      const json = JSON.stringify(err);
+      if (json && json !== '{}' && json !== 'null') return json;
+    } catch (e) {}
+    return 'Google n\'a pas donné de détail. Vérifiez la connexion et le compte Google utilisé, ' +
+      'ou consultez « Exécutions » dans l\'éditeur Apps Script.';
+  }
+
   function afficherMessage(texte, type) {
     const m = $('message');
     m.textContent = texte;
@@ -239,7 +254,7 @@
       img.alt = 'Aperçu de la photo';
       zone.appendChild(img);
     } catch (err) {
-      afficherMessage(err.message, 'erreur');
+      afficherMessage(texteErreur(err), 'erreur');
     }
   });
 
@@ -276,7 +291,7 @@
       .withFailureHandler(err => {
         bouton.disabled = false;
         bouton.textContent = 'Enregistrer la casse';
-        afficherMessage('Échec de l\'envoi : ' + err.message, 'erreur');
+        afficherMessage('Échec de l\'envoi : ' + texteErreur(err), 'erreur');
       })
       .enregistrerCasse({
         pin: $('pin').value,
@@ -321,7 +336,7 @@
         remplirTable($('tLieux'), b.parLieu);
         remplirTable($('tCauses'), b.parCause);
       })
-      .withFailureHandler(err => afficherMessage('Bilan indisponible : ' + err.message, 'erreur'))
+      .withFailureHandler(err => afficherMessage('Bilan indisponible : ' + texteErreur(err), 'erreur'))
       .getBilan();
   }
 
@@ -339,7 +354,7 @@
 
   google.script.run
     .withSuccessHandler(construireFormulaire)
-    .withFailureHandler(err => afficherMessage('Impossible de charger les listes : ' + err.message, 'erreur'))
+    .withFailureHandler(err => afficherMessage('Impossible de charger les listes : ' + texteErreur(err), 'erreur'))
     .getReglages();
 </script>
 </body>

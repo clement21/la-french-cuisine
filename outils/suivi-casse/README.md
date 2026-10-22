@@ -107,6 +107,8 @@ Avec l'accès « Tout le monde », quiconque connaît l'URL peut déclarer une c
 
 - **La colonne « Photo » du registre affiche une erreur ou un texte non cliquable** (versions antérieures au 21/10/2026, qui écrivaient une formule `=HYPERLINK` dépendant de la langue du classeur) : recopier `Code.gs`, puis exécuter **`installer`** ou **`reparerLiensPhotos`**. Les anciennes lignes deviennent des liens « Voir la photo ». Les nouvelles déclarations écrivent directement un lien cliquable, quelle que soit la langue du classeur.
 
+- **« Échec de l'envoi » au moment d'enregistrer** : le message indique l'étape en cause (lecture des réglages, photo, registre, journal). Le détail complet est dans l'éditeur Apps Script, menu de gauche **Exécutions** (icône ≡▶) : cliquer sur la ligne en échec de `enregistrerCasse`. Causes fréquentes : nouvelle autorisation à accorder après une mise à jour (exécuter `installer` depuis l'éditeur), téléphone connecté à plusieurs comptes Google (ouvrir l'application dans une fenêtre où seul le compte du restaurant est connecté), déploiement pas mis à jour après la recopie du code.
+
 ## Limites connues
 
 - Il faut du réseau au moment de l'envoi (pas de mode hors ligne).
